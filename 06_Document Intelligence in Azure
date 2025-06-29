@@ -1,0 +1,47 @@
+Azure Document Intelligence (formerly known as Azure Form Recognizer) is a powerful cloud-based Azure AI service that uses advanced machine learning to extract text, key-value pairs, tables, and structures from documents automatically and accurately. Its primary purpose is to transform unstructured or semi-structured data from various document types into structured, usable data, enabling organizations to automate business processes, improve data-driven decisions, and enhance document search capabilities.
+Essentially, it goes beyond simple Optical Character Recognition (OCR) by understanding the context and relationships within a document.
+
+Key Capabilities and Features:
+
+Optical Character Recognition (OCR):
+The foundational layer. It accurately extracts printed and handwritten text from images and PDF documents, making unsearchable PDFs into searchable ones. This is the "reading" part.
+
+Layout Analysis:
+Beyond just text, it understands the overall layout and structure of a document. It can extract text along with information about paragraphs, lines, words, their bounding box locations, and roles (e.g., header, footer, page number).
+Crucially, it also detects and extracts tables and selection marks (checkboxes, radio buttons), preserving their structure and content.
+
+Key-Value Pair Extraction:
+This is where "intelligence" comes in. The service can identify and extract common fields (e.g., "Invoice Number:", "Total:") and their corresponding values ("INV-2023-001", "$150.00"). It understands the semantic relationship between a label and its associated value, even if they are visually separated.
+
+Prebuilt Models:
+Azure Document Intelligence offers pre-trained, domain-specific models for common document types, which means you can use them out-of-the-box without any custom training.
+Examples:
+
+Invoices: Extracts invoice ID, customer details, vendor details, due date, line items, total amount, tax, etc.
+Receipts: Extracts merchant name, transaction date, total amount, itemized purchases.
+Identity Documents: Extracts details from passports, driver's licenses (e.g., name, date of birth, document number, expiration date).
+Contracts: Extracts agreement parties, effective dates, terms.
+Tax Forms (e.g., US W-2, 1099): Extracts relevant tax information.
+Health Insurance Cards, Bank Statements, Business Cards, Checks: And many more.
+
+Custom Models:
+If your documents have unique or highly specific layouts that aren't covered by prebuilt models, you can train your own custom models. This involves providing a few sample documents (as few as 5) and labeling the fields you want to extract using the Document Intelligence Studio.
+
+Custom Extraction Models: 
+Trained to extract specific labeled fields from documents. Can be Template models (for documents with consistent visual layouts) or Neural models (for documents with varying or mixed layouts).
+
+Custom Classification Models: Trained to identify the type of document (e.g., distinguish between an invoice, a purchase order, and a delivery note) before sending it to the appropriate extraction model.
+
+Composed Models: You can combine multiple custom models into a single "composed" model, allowing you to process different variations of documents (e.g., invoices from different vendors) with a single API call.
+
+Document Intelligence Studio:
+A web-based portal that provides a no-code/low-code visual interface to:
+Explore and test prebuilt models.
+Upload your own documents and analyze them.
+Label documents to train custom models.
+View the extracted data in a structured (JSON) format.
+Get sample code snippets for integrating into applications.
+
+Output Format:
+The extracted data is returned in a structured JSON format, making it easy to integrate with databases, business applications, and workflows (e.g., Power Automate, Azure Logic Apps).
+Each extracted field comes with a confidence score, indicating the model's certainty about the extraction.
