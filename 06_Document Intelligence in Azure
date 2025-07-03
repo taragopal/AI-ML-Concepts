@@ -6,7 +6,7 @@ Key Capabilities and Features:
 Optical Character Recognition (OCR):
 The foundational layer. It accurately extracts printed and handwritten text from images and PDF documents, making unsearchable PDFs into searchable ones. This is the "reading" part.
 
-Layout Analysis:
+Layout Analysis: 
 Beyond just text, it understands the overall layout and structure of a document. It can extract text along with information about paragraphs, lines, words, their bounding box locations, and roles (e.g., header, footer, page number).
 Crucially, it also detects and extracts tables and selection marks (checkboxes, radio buttons), preserving their structure and content.
 
