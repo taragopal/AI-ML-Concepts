@@ -3,7 +3,7 @@
 You're looking for a clear distinction between Key Phrase Extraction and Entity Recognition (specifically Named Entity Recognition or NER) within Natural Language Understanding (NLU). This is a common point of confusion, but understanding the difference is crucial for effectively applying these tools.
 Here's a concise breakdown of their differences:
 
-Key Phrase Extraction
+Key Phrase Extraction 
 ----------------------
 What it extracts: Identifies the main concepts, topics, or themes present in a piece of text. These are usually noun phrases that capture the essence of what the document is about. It's about summarizing the gist.
 Nature of extracted information: General, high-level, and often a statistical representation of prominent ideas. It doesn't categorize these phrases into specific types like "person" or "location."
