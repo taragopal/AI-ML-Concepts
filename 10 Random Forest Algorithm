@@ -1,0 +1,21 @@
+Random Forest is a "bagging" (Bootstrap Aggregating) algorithm. It builds an ensemble of many independent decision trees. For a regression task, the process is as follows:
+
+1. Bootstrapping: It takes multiple random samples (with replacement) of the training data. Each sample is used to train a separate decision tree.
+2. Feature Randomness: At each node of a decision tree, only a random subset of the features is considered for the split. This ensures that the trees are diverse and not all relying on the same few powerful features.
+3. Independent Training: Each decision tree is trained independently and in parallel.
+4. Prediction: To make a final prediction for a new data point, the algorithm passes it through all the trees. The final output is the average of the predictions from all the individual trees.
+
+When to Use It and Why:
+When you need a quick, robust baseline: Random Forest is relatively easy to implement and typically provides strong, out-of-the-box performance with minimal hyperparameter tuning.
+When overfitting is a concern: The randomness in both data sampling and feature selection makes Random Forest highly effective at reducing variance and preventing overfitting. It creates a diverse "forest" where individual trees' errors are averaged out.
+When you have noisy or messy data: It is robust to outliers and noisy data because the errors of individual trees are canceled out in the averaging process. It can also handle missing data and different feature types (categorical and numerical) without extensive preprocessing.
+When you can train in parallel: Because each tree is built independently, the training process is easily parallelizable, which can significantly speed up training on powerful hardware.
+
+Cost:
+---------------
+Computational Cost (Training): The training time can be high, as it requires building many trees. The complexity is roughly O(k∗n∗log(n)∗m), where k is the number of trees, n is the number of samples, and m is the number of features.
+
+Memory Cost (Model Size): The final model can be large and memory-intensive because it has to store all the trees.
+
+Prediction Cost (Inference): The prediction is slower than a single decision tree because it requires traversing all the trees in the forest.
+
