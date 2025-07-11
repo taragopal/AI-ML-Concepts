@@ -1,0 +1,30 @@
+Gradient Boosting for Regression
+How it Works:
+
+Gradient Boosting is a "boosting" algorithm. It builds an ensemble of decision trees sequentially, with each new tree trying to correct the errors of the previous ones.
+
+Initial Prediction: The process starts with a simple initial prediction, often the mean of the target variable.
+
+Sequential Training: A new decision tree is trained to predict the residuals (the errors, or the difference between the actual value and the current prediction) from the previous model.
+
+Additive Model: Each new tree's prediction is added to the previous model's prediction, with a small learning rate (shrinkage) to prevent overfitting.
+
+Final Prediction: The final prediction is a weighted sum of the predictions of all the trees in the sequence.
+
+When to Use It and Why:
+
+When predictive accuracy is paramount: Gradient Boosting often outperforms Random Forest, especially on complex datasets, because it iteratively focuses on correcting its own mistakes. It is generally considered one of the most accurate algorithms for structured (tabular) data.
+
+When you have a low tolerance for prediction errors: The sequential nature of the algorithm allows it to hone in on and improve predictions for data points that were difficult for previous trees to handle.
+
+When you have time for hyperparameter tuning: Gradient Boosting is more sensitive to its hyperparameters (like learning rate, number of estimators, and max depth) and requires careful tuning to avoid overfitting, especially with noisy data.
+
+When the relationships in the data are complex: The sequential learning allows the model to capture subtle and complex interactions between features that might be missed by a single-shot approach like Random Forest.
+
+Cost:
+
+Computational Cost (Training): Training can be slower than Random Forest, as the sequential nature of the algorithm prevents parallelization.
+
+Memory Cost (Model Size): The model size is often smaller than a Random Forest, as the trees are typically smaller and simpler.
+
+Prediction Cost (Inference): The prediction speed is similar to Random Forest, as it requires a sequential pass through the trees.
