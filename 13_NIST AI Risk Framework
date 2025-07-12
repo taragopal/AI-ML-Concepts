@@ -1,0 +1,23 @@
+The NIST AI Risk Management Framework (AI RMF) is a voluntary, non-regulatory guide created by the National Institute of Standards and Technology (NIST) to help organizations manage the risks associated with designing, developing, and using artificial intelligence systems.
+
+It is designed to be flexible and adaptable, promoting the creation of AI that is not only effective but also trustworthy.
+
+Core Purpose
+-------------
+The primary goal of the AI RMF is to balance the benefits of AI innovation with the potential for harm to individuals, organizations, and society. It provides a structured, systematic approach to address a wide range of risks, from technical issues like a lack of security or reliability, to broader societal concerns such as bias, privacy violations, and lack of transparency.
+
+The Four Functions
+------------------
+The framework is built around four core, interdependent functions that can be applied at any stage of the AI lifecycle:
+
+Govern: This function establishes a strong foundation for managing AI risks. It involves defining an organization's policies, procedures, and oversight structures. Essentially, it's about setting up the "who, what, and why" of AI risk management, ensuring clear roles, responsibilities, and accountability are in place.
+Map: This is the process of identifying and assessing the specific AI risks. It requires understanding the AI system's intended purpose, its technical components, its operational context, and the potential impacts it could have on people and society. It's about systematically asking, "What could go wrong?"
+Measure: This function focuses on quantifying and evaluating the identified risks. It involves developing and using appropriate metrics, tests, and benchmarks to assess the performance, fairness, and overall trustworthiness of the AI system. It moves from identifying a risk to being able to say, "How big is this risk?"
+Manage: This final function is about taking action. It involves allocating resources and implementing strategies to mitigate, accept, or transfer the risks that have been identified and measured. It's the process of putting the risk management plan into practice.
+
+Key Takeaways
+-----------------
+Voluntary and Flexible: It is not a regulation, but a guide that organizations can adapt to their specific needs, size, and industry.
+Focus on Trustworthiness: The framework is explicitly designed to foster trustworthy AI, which it defines through characteristics like reliability, safety, security, fairness, explainability, and accountability.
+Whole-of-Organization Approach: It encourages collaboration between all stakeholders, including technical teams, business leaders, legal departments, and end-users, to ensure that risks are managed holistically.
+Lifecycle-Oriented: It promotes a continuous process of risk management throughout the entire lifecycle of an AI system, from initial design to deployment and decommissioning.
