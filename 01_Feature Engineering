@@ -8,6 +8,7 @@ Enables Algorithms to Work: Many ML algorithms cannot directly process raw data 
 
 Reduces Overfitting/Underfitting: By creating more informative features, you provide the model with a clearer signal, reducing noise and helping it generalize better to unseen data. It can also help simplify the model by capturing complex relationships in simpler features.
 
+
 Enhances Interpretability: Sometimes, engineered features make more intuitive sense than raw features, which can help in understanding why a model makes certain predictions.
 
 Faster Training: A smaller, more focused set of high-quality features can lead to faster model training times.
@@ -24,6 +25,7 @@ Engineered Feature: A new feature created from raw data through transformation, 
 Common Feature Engineering Techniques (by Data Type):
 A. Numerical Data
 Numerical data is usually straightforward, but transformations can reveal hidden patterns:
+
 
 Scaling/Normalization:
 
