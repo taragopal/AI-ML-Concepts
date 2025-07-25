@@ -7,6 +7,7 @@ This accelerator template provides users with a code-first example for creating 
 This template is perfect for developers and organizations looking to design, customize, and manage agents that can handle complex queries, route tasks, and provide reliable answers, all with a controlled, scalable architecture.
 
 
+
 ### MENU: [**FEATURES**](#features) • [**AGENT ARCHITECTURE**](#agent-architecture) • [**GETTING STARTED**](#getting-started) • [**GUIDANCE**](#guidance)
 
 ## Important Security Notice
