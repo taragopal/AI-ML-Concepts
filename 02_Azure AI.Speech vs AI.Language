@@ -2,7 +2,7 @@ Azure AI Speech and Azure AI Language are both powerful sets of services within 
 
 Here's a breakdown of when to choose which service for what use cases:
 
-Azure AI Speech
+Azure AI Speech 
 Focus: Converting spoken language to text, text to spoken language, and processing speech for various insights.
 
 When to choose it:
