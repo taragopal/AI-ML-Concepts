@@ -2,6 +2,7 @@ Most common types of clustering algorithms:
 
 1. Centroid-Based Clustering (Partitioning Methods)
 -----------------------------------------------------
+
 This is the most popular and widely used category. These algorithms partition the data into a pre-specified number of clusters (k). They work by assigning data points to clusters based on their proximity to a cluster's center (its centroid).
 
 
