@@ -1,6 +1,7 @@
 
 Semantic Kernel (SK) is a lightweight, open-source SDK from Microsoft that acts as an orchestration layer for connecting Large Language Models (LLMs) with your existing code and data. Think of it as the central nervous system for your AI applications. It helps you build intelligent AI agents or "copilots" that can reason, plan, and take action by using both the "semantic" (AI) and "native" (code) functions you provide.
 
+LAB.AI102.2.6: Develop an Azure AI agent with the Semantic Kernel SDK: https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/04-semantic-kernel.html
 
 The Analogy
 -------------
@@ -16,6 +17,100 @@ III. Native Functions: Your existing code written in C#, Python, or Java. You de
 IV. Semantic Functions: Prompts that define a specific task for the LLM, like "Summarize this text" or "Generate a poem."
 V. Planners: The part of the Kernel that helps the LLM automatically chain functions together to accomplish a multi-step goal.
 VI. Memory: Provides the LLM with both short-term context (the current conversation) and long-term knowledge (data retrieved from a vector database).
+
+
+Azure AI specific core components: 
+----------------------------------
+AI service connectors - connect the code to AI services from different providers under a common interface. Supported services include Chat Completion, Text Generation, and more.
+Memory connectors - expose vector stores from other providers under a common interface.
+Functions and plugins - containers for functions that are registered with the kernel. Once registered, functions can be invoked by the AI or through prompt templates.
+Prompt templates - combine instructions, user input, and function outputs into a reusable format. Prompt templates allow AI models to execute predefined steps dynamically.
+Filters - allow custom actions to be performed before and after a function or prompt is invoked. When registered, function filters act as outer layers and prompt filters as inner layers.
+
+
+Agent framework components
+-----------------------------
+The Agent Framework within Semantic Kernel helps streamline the creation of agents and enables multi-agent collaboration in conversations while integrating human input. The framework supports different types of agents, including ChatCompletionAgent, OpenAIAssistantAgent, and AzureAIAgent.
+
+What is an Azure AI Agent?
+---------------------------
+The AzureAIAgent class provides a seamless way to build and interact with AI agents using the Foundry Agent Service. It abstracts the complexity of managing AI agents by offering a more structured and intuitive interface within the Semantic Kernel Agent Framework. Key benefits include:
+Simplified agent creation – The AzureAIAgent class allows developers to define AI agents with minimal configuration, leveraging the power of Foundry Agent Service without managing the underlying infrastructure.
+Automatic tool invocation – The agent can automatically call and execute tools, integrating seamlessly with Azure AI Search, Bing, Azure Functions, and more.
+Thread and conversation management – Provides built-in mechanisms for managing conversation states, ensuring smooth multi-agent interactions.
+Secure enterprise integration – Enables secure and compliant AI agent development with keyless authentication and customizable storage options.
+By using the AzureAIAgent class, developers can take full advantage of Foundry Agent Service while taking advantage of the features offered by the Semantic Kernel SDK. This allows for robust AI-driven workflows that scale efficiently across enterprise applications.
+
+
+Creating an AzureAIAgent
+-----------------------------
+An AzureAIAgent object encapsulates all the core capabilities you typically use the Kernel for, like function execution, planning, and memory access. This object acts as a self-contained agent runtime.
+
+To use an AzureAIAgent:
+------------------------------
+Create an Azure AI Foundry project.
+Add the project connection string to your Semantic Kernel application code.
+Create an AzureAIAgentSettings object.
+Create an AzureAIAgent client.
+Create an agent definition on the agent service provided by the client.
+Create an agent based on the definition.
+
+Here's the code that illustrates how to create an AzureAIAgent:
+--------------------------------------------------------------------
+
+from azure.identity.aio import DefaultAzureCredential
+from semantic_kernel.agents import AzureAIAgent, AzureAIAgentThread, AzureAIAgentSettings
+
+# Create an AzureAIAgentSettings object
+ai_agent_settings = AzureAIAgentSettings()
+
+# Create an AzureAIAgent client
+async with (@
+    DefaultAzureCredential() as creds,
+    AzureAIAgent.create_client(credential=creds) as client,
+):
+    # Create an agent definition on the agent service provided by the client
+    agent_definition = await client.agents.create_agent(
+        model=ai_agent_settings.model_deployment_name,
+        name="<name>",
+        instructions="<instructions>",
+    )
+
+    # Create the AI agent based on the agent definition
+    agent = AzureAIAgent(
+        client=client,
+        definition=agent_definition,
+    )
+
+
+
+# Once your agent is defined, you can create a thread to interact with your agent and invoke responses for inputs. For example:
+
+# Create the agent thread
+thread: AzureAIAgentThread = AzureAIAgentThread(client=client)
+
+try:
+    # Create prompts 
+    prompt_messages = ["What are the largest semiconductor manufacturing companies?"]
+
+    # Invoke a response from the agent
+    response = await agent.get_response(messages=prompt_messages, thread_id=thread.id)
+
+    # View the response
+    print(response)
+finally:
+    # Clean up the thread
+    await thread.delete() if thread else None
+
+
+How to use plugins with AzureAIAgent
+----------------------------------------
+Define your plugin : You can create a plugin by defining a class and annotating its methods with the kernel_function decorator. The decorator lets Semantic Kernel know that this function can be called by the AI or referenced in a prompt. The kernel_function decorator also supports a description attribute to help the AI understand how to use the function.
+
+Add the plugin to your agent: Once you define your plugin, you can add it to your AzureAIAgent by creating a new instance of the plugin and adding it to the agent's plugin collection.
+
+Invoke the plugin's functions: You can invoke your plugin's functions by using prompts on your agent's message thread. For example, if you have a plugin function called get_tasks, your prompt to the agent might be "What tasks do I have?".
+
 
 The Why and How
 ----------------
