@@ -1,0 +1,19 @@
+Orchestrate a multi-agent solution using Semantic Kernel
+
+Hypthetical Scenario ( MS Learn Documentation)
+-------------------------------------------------
+🥨Imagine you're trying to address common DevOps challenges such as monitoring application performance, identifying issues, and deploying fixes. A multi-agent system could consist of four specialized agents working collaboratively:
+
+The Monitoring Agent continuously ingests logs and metrics, detects anomalies using natural language processing (NLP), and triggers alerts when issues arise.
+The Root Cause Analysis Agent then correlates these anomalies with recent system changes, using machine learning models or predefined rules to pinpoint the root cause of the problem.
+Once the root cause is identified, the Automated Deployment Agent takes over to implement fixes or roll back problematic changes by interacting with CI/CD pipelines and executing deployment scripts.
+Finally, the Reporting Agent generates detailed reports summarizing the anomalies, root causes, and resolutions, and notifies stakeholders via email or other communication channels.
+
+Goal : 
+😎Build AI agents using the Semantic Kernel SDK
+😎Use tools and plugins with your AI agents
+😎Understand different types of orchestration patterns
+😎Develop multi-agent solutions
+
+
+☘️
