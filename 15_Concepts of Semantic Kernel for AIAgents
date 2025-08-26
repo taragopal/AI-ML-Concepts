@@ -1,6 +1,7 @@
 
 Semantic Kernel (SK) is a lightweight, open-source SDK from Microsoft that acts as an orchestration layer for connecting Large Language Models (LLMs) with your existing code and data. Think of it as the central nervous system for your AI applications. It helps you build intelligent AI agents or "copilots" that can reason, plan, and take action by using both the "semantic" (AI) and "native" (code) functions you provide.
 
+
 LAB.AI102.2.6: Develop an Azure AI agent with the Semantic Kernel SDK: https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/04-semantic-kernel.html
 
 The Analogy
