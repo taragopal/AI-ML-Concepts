@@ -26,3 +26,9 @@ poller = document_analysis_client.begin_analyze_document(
 result: AnalyzeResult = poller.result()
 
 
+How can access Azure Document Intelligence services? 
+-----------------------------------------------------
+A REST API
+Client library SDKs
+Azure Document Intelligence Studio
+Azure AI Foundry
