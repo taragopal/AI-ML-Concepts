@@ -1,5 +1,6 @@
 The existing prebuild models: trained on specific form types:
-
+/*----------------------------------------------------------
+------------------------------------------------------------*/
 Invoice model. Extracts common fields and their values from invoices.
 Receipt model. Extracts common fields and their values from receipts.
 US Tax model. Unified US tax model that can extract from forms such as W-2, 1098, 1099, and 1040.
@@ -69,3 +70,74 @@ document_analysis_client = DocumentAnalysisClient(
 task = document_analysis_client.begin_analyze_document_from_url(model_id, formUrl)
 result = task.result()
 ------------------------------------------------------------*/
+
+A successful JSON response contains analyzeResult that contains the content extracted and an array of pages containing information about the document content.
+/*----------------------------------------------------------
+{
+	"status": "succeeded",
+	"createdDateTime": "2024-10-18T23:39:50Z",
+	"lastUpdatedDateTime": "2024-10-18T23:39:54Z",
+	"analyzeResult": {
+		"apiVersion": "2022-08-31",
+		"modelId": "DocIntelModel",
+		"stringIndexType": "utf16CodeUnit",
+		"content": "Purchase Order\nHero Limited\nCompany Phone: 555-348-6512 Website: www.herolimited.com Email: accounts@herolimited.com\nPurchase Order\nDated As: 12/20/2020 
+Purchase Order #: 948284\nShipped To Vendor Name: Balozi Khamisi Company Name: Higgly Wiggly Books Address: 938 NE Burner Road Boulder City, CO 92848 Phone: 938-294-2949\nShipped 
+From Name: Kidane Tsehaye Company Name: Jupiter Book Supply Address: 383 N Kinnick Road Seattle, WA 38383\nPhone: 932-299-0292\nDetails\nQuantity\nUnit Price\nTotal\nBindings\n20\n1.00\n20.00\nCovers 
+Small\n20\n1.00\n20.00\nFeather Bookmark\n20\n5.00\n100.00\nCopper Swirl Marker\n20\n5.00\n100.00\nSUBTOTAL\n$140.00\nTAX\n$4.00\nTOTAL\n$144.00\nKidane Tsehaye\nManager\nKidane Tsehaye\n
+Additional Notes: Do not Jostle Box. Unpack carefully. Enjoy. Jupiter Book Supply will refund you 50% per book if returned within 60 days of reading and offer you 25% off you next total purchase.",
+		"pages": [
+			{
+				"pageNumber": 1,
+				"angle": 0,
+				"width": 1159,
+				"height": 1486,
+				"unit": "pixel",
+				"words": [
+					{
+						"content": "Purchase",
+						"polygon": [
+							89,
+							90,
+							174,
+							91,
+							174,
+							112,
+							88,
+							112
+						],
+						"confidence": 0.996,
+						"span": {
+							"offset": 0,
+							"length": 8
+						}
+					},
+					{
+						"content": "Order",
+						"polygon": [
+							178,
+							91,
+							237,
+							91,
+							236,
+							113,
+							178,
+							112
+						],
+						"confidence": 0.997,
+						"span": {
+							"offset": 9,
+							"length": 5
+						}
+					},
+                    ...
+------------------------------------------------------------*/
+What needs to be done to train a custom model and use it to extract data with custom models in Azure AI ? 
+
+Create an Azure Document Intelligence or Azure AI Services resource
+Collect at least 5-6 sample forms for training and upload them to your storage account container.
+Configure cross-domain resource sharing (CORS). CORS enables Azure Document Intelligence Studio to store labeled files in your storage container.
+Create a custom model project in Azure Document Intelligence Studio. You'll need to provide configurations linking your storage container and Azure Document Intelligence or Azure AI Service resource to the project.
+Use Azure Document Intelligence Studio to apply labels to text.
+Train your model. Once the model is trained, you'll receive a Model ID and Average Accuracy for tags.
+Test your model by analyzing a new form that wasn't used in training.
