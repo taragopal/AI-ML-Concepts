@@ -1,5 +1,7 @@
 The existing prebuild models: trained on specific form types:
 /*----------------------------------------------------------
+LABS1: Analyze forms with <PREBUILT> Azure AI Document Intelligence models: https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Labs/03-prebuilt-doc-intelligence-model.html
+LAB2: Analyze forms with <CUSTOM> Azure AI Document Intelligence models: https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Labs/04-custom-doc-intelligence-model.html
 ------------------------------------------------------------*/
 Invoice model. Extracts common fields and their values from invoices.
 Receipt model. Extracts common fields and their values from receipts.
