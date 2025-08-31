@@ -1,1 +1,15 @@
+The existing prebuild models: trained on specific form types:
+
+Invoice model. Extracts common fields and their values from invoices.
+Receipt model. Extracts common fields and their values from receipts.
+US Tax model. Unified US tax model that can extract from forms such as W-2, 1098, 1099, and 1040.
+ID document model. Extracts common fields and their values from US drivers' licenses, European Union IDs and drivers license, and international passports.
+Business card model. Extracts common fields and their values from business cards.
+Health insurance card model. Extracts common fields and their values from health insurance cards.
+Marriage certificate. Extracts information from marriage certificates.
+Credit/Debit card model. Extracts common information from bank cards.
+Mortgage documents. Extracts information from mortgage closing disclosure, Uniform Residential Loan Application (Form 1003), Appraisal (Form 1004), Validation of Employment (Form 1005), and Uniform Underwriting and Transmittal Summary (Form 1008).
+Bank statement model. Extracts account information including beginning and ending balances, transaction details from bank statements.
+Pay Stub model. Extracts wages, hours, deductions, net pay, and other common pay stub fields.
+Check model. Extracts payee, amount, date, and other relevant information from checks.
 
