@@ -23,7 +23,6 @@ To make that connection, you need:
 poller = document_analysis_client.begin_analyze_document(
         "prebuilt-layout", AnalyzeDocumentRequest(url_source=docUrl
     ))
-
-
 result: AnalyzeResult = poller.result()
+
 
