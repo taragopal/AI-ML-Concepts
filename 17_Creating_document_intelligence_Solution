@@ -13,3 +13,17 @@ Bank statement model. Extracts account information including beginning and endin
 Pay Stub model. Extracts wages, hours, deductions, net pay, and other common pay stub fields.
 Check model. Extracts payee, amount, date, and other relevant information from checks.
 
+
+Using asynchronous calls : Whenever you want to call Azure AI Document Intelligence, you must start by connecting and authenticating with the service in your Azure subscription. 
+To make that connection, you need:
+  -- The service endpoint. This value is the URL where the service is published.
+  -- The API key. This value is a unique key that grants access.
+
+
+poller = document_analysis_client.begin_analyze_document(
+        "prebuilt-layout", AnalyzeDocumentRequest(url_source=docUrl
+    ))
+
+
+result: AnalyzeResult = poller.result()
+
