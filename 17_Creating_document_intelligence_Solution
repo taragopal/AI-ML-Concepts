@@ -20,11 +20,12 @@ To make that connection, you need:
   -- The API key. This value is a unique key that grants access.
 
 
+/*----------------------------------------------------------
 poller = document_analysis_client.begin_analyze_document(
         "prebuilt-layout", AnalyzeDocumentRequest(url_source=docUrl
     ))
 result: AnalyzeResult = poller.result()
-
+----------------------------------------------------------*/
 
 How can access Azure Document Intelligence services? 
 -----------------------------------------------------
@@ -49,3 +50,22 @@ Use the Azure Document Intelligence Studio to label and train. There are two typ
   -- Custom neural models are deep learned models that combine layout and language features to accurately extract labeled fields from documents.This model is best for semi-structured or unstructured documents.
 
 
+To extract form data using a custom model, use the analyze document function of either a supported SDK, or the REST API, while supplying model ID (generated during model training). This function starts the form
+analysis. which you can then request the result to get the analysis.
+
+#Python CODE: 
+/*----------------------------------------------------------
+endpoint = "YOUR_DOC_INTELLIGENCE_ENDPOINT"
+key = "YOUR_DOC_INTELLIGENCE_KEY"
+
+model_id = "YOUR_CUSTOM_BUILT_MODEL_ID"
+formUrl = "YOUR_DOCUMENT"
+
+document_analysis_client = DocumentAnalysisClient(
+    endpoint=endpoint, credential=AzureKeyCredential(key)
+)
+
+# Make sure your document's type is included in the list of document types the custom model can analyze
+task = document_analysis_client.begin_analyze_document_from_url(model_id, formUrl)
+result = task.result()
+------------------------------------------------------------*/
