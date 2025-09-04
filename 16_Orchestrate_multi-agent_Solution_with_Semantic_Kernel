@@ -117,8 +117,8 @@ Best for brainstorming, collaborative problem solving, and building consensus.
 
 IMPELEMTATION FLow: Same as other, class is different: 
 ------------------------------------------------------
-Set up the group chat orchestration: Create a ➡️GroupChatOrchestration object with your agents and a chat manager (e.g., RoundRobinGroupChatManager) that controls the
-conversation flow. You can also add a callback to observe agent responses.
+Set up the group chat orchestration: Create a ➡️GroupChatOrchestration object with your agents and a chat manager (e.g., RoundRobinGroupChatManager) that controls
+the conversation flow. You can also add a callback to observe agent responses.
 
 Customizing the group chat manager: You can create a custom group chat manager by extending the base GroupChatManager class. This lets you control:
 -----------------------------------
@@ -139,7 +139,28 @@ During each round of the conversation, the chat manager calls methods in this or
 
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
 🎶Magentic orchestration - A manager-driven approach that plans, delegates, and adapts across specialized agents. Suited to complex, open-ended problems where the
-solution path evolves.
+solution path evolves. Magentic orchestration is a flexible, general-purpose multi-agent pattern designed for complex, open-ended tasks that require dynamic 
+collaboration.This pattern uses a dedicated Magentic manager to coordinate a team of specialized agents. The manager decides which agent should act next based
+on the evolving context, task progress, and agent capabilities.
+
+🧲🧲🧲🧲IMPLEMENTATION Flow: 
+
+🧲Define specialized agents: Create agent instances (for example, ChatCompletionAgent) with specific instructions and AI services. Each agent should have a 
+specialized role.
+
+🧲Set up the Magentic manager: The StandardMagenticManager coordinates agent collaboration, plans workflows, and tracks progress.
+
+🧲Add optional response observation: Define a callback to monitor and log agent messages in real time.
+
+🧲Create the orchestration: Combine agents and the manager in a MagenticOrchestration object.
+
+🧲Start the runtime: Use InProcessRuntime to manage execution.
+
+🧲Invoke the orchestration: Invoke the orchestration with your complex task. The manager plans, delegates, and coordinates the agents to solve the problem.
+
+🧲Collect and process results: Wait for orchestration completion, then output the final report.
+
+🧲Stop the runtime (optional): Cleanly shut down to free resources.
 
 
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
