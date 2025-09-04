@@ -88,11 +88,54 @@ through all agents sequentially.
 🎶Handoff orchestration - Dynamically transfer control between agents based on context or rules. Great for escalation, fallback, and expert routing where one agent
 works at a time.
 
+Ideal for: customer support, expert systems, or any situation where dynamic delegation is needed.
+
+IMPLEMENATION Flow: 
+👌Create specialized agents: Create agent instances (for example, ChatCompletionAgent) with specific instructions and AI services. These agents can use plugins
+containing domain-specific logic.
+
+👌Define handoff relationships: Use OrchestrationHandoffs to define which agents can hand off tasks to which others, and under what conditions. This class
+controls dynamic routing between agents.
+
+👌 Add human-in-the-loop support: Optionally, provide a callback to include human input during the conversation, allowing a user to participate whenever needed.
+
+👌Create the handoff orchestration: Instantiate s HandoffOrchestration object with your agents, handoff rules, and callbacks to observe agent responses and 
+handle human input.
+
+👌Start the runtime: Initialize and start an InProcessRuntime to manage the orchestration execution.
+
+👌Invoke the orchestration: Run the orchestration with an initial task input. Agents will handle the conversation and route control based on the defined handoff 
+rules.
+
+👌Collect the results: Await the completion of the orchestration and collect the final output.
+
+👌Stop the runtime (optional): Cleanly stop the runtime after processing to release resources.
 
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
 🎶Group chat orchestration - Coordinate a shared conversation among multiple agents (and optionally a human), managed by a chat manager that chooses who speaks next. 
 Best for brainstorming, collaborative problem solving, and building consensus.
 
+IMPELEMTATION FLow: Same as other, class is different: 
+------------------------------------------------------
+Set up the group chat orchestration: Create a ➡️GroupChatOrchestration object with your agents and a chat manager (e.g., RoundRobinGroupChatManager) that controls the
+conversation flow. You can also add a callback to observe agent responses.
+
+Customizing the group chat manager: You can create a custom group chat manager by extending the base GroupChatManager class. This lets you control:
+-----------------------------------
+How conversation results are filtered or summarized
+How the next agent is selected
+When to request user input
+When to terminate the conversation
+Custom managers let you implement specialized logic tailored to your use case.
+
+Group chat manager call order 
+------------------------------
+During each round of the conversation, the chat manager calls methods in this order:
+
+➡️should_request_user_input - Checks if human input is needed before the next agent responds.
+➡️should_terminate - Determines if the conversation should end (e.g., max rounds reached).
+➡️filter_results - If ending, summarizes or processes the final conversation.
+➡️ select_next_agent - If continuing, chooses the next agent to speak.
 
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
 🎶Magentic orchestration - A manager-driven approach that plans, delegates, and adapts across specialized agents. Suited to complex, open-ended problems where the
