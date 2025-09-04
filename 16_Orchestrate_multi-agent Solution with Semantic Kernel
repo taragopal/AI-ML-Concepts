@@ -2,12 +2,14 @@ Orchestrate a multi-agent solution using Semantic Kernel
 
 Hypthetical Scenario ( MS Learn Documentation)
 -------------------------------------------------
-🥨Imagine you're trying to address common DevOps challenges such as monitoring application performance, identifying issues, and deploying fixes. A multi-agent system could consist of four specialized agents working collaboratively:
+🥨Imagine you're trying to address common DevOps challenges such as monitoring application performance, identifying issues, and deploying fixes. A multi-agent 
+system could consist of four specialized agents working collaboratively:
 
 The Monitoring Agent continuously ingests logs and metrics, detects anomalies using natural language processing (NLP), and triggers alerts when issues arise.
-The Root Cause Analysis Agent then correlates these anomalies with recent system changes, using machine learning models or predefined rules to pinpoint the root cause of the problem.
-Once the root cause is identified, the Automated Deployment Agent takes over to implement fixes or roll back problematic changes by interacting with CI/CD pipelines and executing deployment scripts.
-Finally, the Reporting Agent generates detailed reports summarizing the anomalies, root causes, and resolutions, and notifies stakeholders via email or other communication channels.
+The Root Cause Analysis Agent then correlates these anomalies with recent system changes, using machine learning models or predefined rules to pinpoint the root
+cause of the problem. Once the root cause is identified, the Automated Deployment Agent takes over to implement fixes or roll back problematic changes by interacting
+with CI/CD pipelines and executing deployment scripts. Finally, the Reporting Agent generates detailed reports summarizing the anomalies, root causes, and 
+resolutions, and notifies stakeholders via email or other communication channels.
 
 Goal : 
 😎Build AI agents using the Semantic Kernel SDK
@@ -16,4 +18,67 @@ Goal :
 😎Develop multi-agent solutions
 
 
-☘️
+☘️ Supported Orchestration methods for the Semantic Kernel : 
+-----------------------------------------------------------------
+🎶 Concurrent orchestration - Broadcast the same task to multiple agents at once and collect their results independently. Useful for parallel analysis, independent
+subtasks, or ensemble decision making.
+When to use? 
+1. when tasks can run concurrently 
+2. when tasks can benifit from different specialized skills or approaches 
+3. Its best to use in voting ( quorum), speedy resolution, brain storming, combining different reasoning methods. 
+
+Avoid : When there are resource constraints, tasks are strictly dependent on sequences, when data cant be shared reliably with extenal entitites, when the task is too
+complex and there are competing logic in motion. 
+
+Flow:  
+🪂🚀Define your agents: Create agent instances (for example, ➡️ChatCompletionAgent) with specific instructions and AI services. Each agent specializes in a particular domain or skill set.
+
+🪂🚀Set up the concurrent orchestration : Use the ➡️ConcurrentOrchestration class to create an orchestration that can run multiple agents in parallel. Pass your 
+agent instances as members to this orchestration.
+
+🪂🚀Start the runtime: Initialize and start an ➡️InProcessRuntime object to manage agent execution and coordination.
+
+🪂🚀 Invoke the orchestration: Call the orchestration's ➡️invoke method with the task or input you want the agents to work on. The orchestration runs all agents 
+concurrently.
+
+🪂🚀Collect the results: Gather the output asynchronously from all agents. The results are typically returned as a list, but the order of responses is not 
+guaranteed.
+
+Stop the runtime (optional)
+After processing, cleanly stop the runtime to release resources.
+🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
+🎶Sequential orchestration - Pass the output from one agent to the next in a fixed order. Ideal for step-by-step workflows, pipelines, and progressive refinement.
+
+
+
+
+🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
+🎶Handoff orchestration - Dynamically transfer control between agents based on context or rules. Great for escalation, fallback, and expert routing where one agent
+works at a time.
+
+
+🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
+🎶Group chat orchestration - Coordinate a shared conversation among multiple agents (and optionally a human), managed by a chat manager that chooses who speaks next. 
+Best for brainstorming, collaborative problem solving, and building consensus.
+
+
+🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
+🎶Magentic orchestration - A manager-driven approach that plans, delegates, and adapts across specialized agents. Suited to complex, open-ended problems where the
+solution path evolves.
+
+
+🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
+🪻🪻🪻 What are the steps to design a unified Orchestation workflow ? 
+-----------------------------------------------------------------------
+⬆️➡️Define your agents and describe their capabilities.
+⬆️➡️Select and create an orchestration pattern, optionally adding a manager agent if needed.
+⬆️➡️Optionally configure callbacks or transforms for custom input and output handling.
+⬆️➡️Start a runtime to manage execution.
+⬆️➡️Invoke the orchestration with your task.
+⬆️➡️ Retrieve results in an asynchronous, non-blocking way.
+
+🎶
+🎶
+🎶
+🎶
+ 
