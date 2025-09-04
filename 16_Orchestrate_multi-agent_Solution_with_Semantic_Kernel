@@ -27,11 +27,12 @@ When to use?
 2. when tasks can benifit from different specialized skills or approaches 
 3. Its best to use in voting ( quorum), speedy resolution, brain storming, combining different reasoning methods. 
 
-Avoid : When there are resource constraints, tasks are strictly dependent on sequences, when data cant be shared reliably with extenal entitites, when the task is too
-complex and there are competing logic in motion. 
+Avoid : When there are resource constraints, tasks are strictly dependent on sequences, when data cant be shared reliably with extenal entitites, when the task is
+too complex and there are competing logic in motion. 
 
-Flow:  
-🪂🚀Define your agents: Create agent instances (for example, ➡️ChatCompletionAgent) with specific instructions and AI services. Each agent specializes in a particular domain or skill set.
+IMPLEMENTATION Flow:  
+🪂🚀Define your agents: Create agent instances (for example, ➡️ChatCompletionAgent) with specific instructions and AI services. Each agent specializes in a 
+particular domain or skill set.
 
 🪂🚀Set up the concurrent orchestration : Use the ➡️ConcurrentOrchestration class to create an orchestration that can run multiple agents in parallel. Pass your 
 agent instances as members to this orchestration.
@@ -44,12 +45,43 @@ concurrently.
 🪂🚀Collect the results: Gather the output asynchronously from all agents. The results are typically returned as a list, but the order of responses is not 
 guaranteed.
 
-Stop the runtime (optional)
-After processing, cleanly stop the runtime to release resources.
+Stop the runtime (optional): After processing, cleanly stop the runtime to release resources.
+
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
 🎶Sequential orchestration - Pass the output from one agent to the next in a fixed order. Ideal for step-by-step workflows, pipelines, and progressive refinement.
 
+Use sequential pattern when : 
+------------------------------
+Processes made up of multiple steps that must happen in a specific order, where each step relies on the one before it.
+Data workflows where each stage adds something important that the next stage needs to work properly.
+Tasks where stages can't be done at the same time and must run one after another.
+Situations that require gradual improvements, like drafting, reviewing, and polishing content.
+Systems where you know how each agent performs and can handle delays or failures in any step without stopping the whole process.
 
+Avoid this pattern when: 
+-------------------------
+Stages can be run independently and in parallel without affecting quality.
+The entire task can be done effectively by a single agent.
+Early stages may fail or produce poor output, and there's no way to stop or correct downstream processing based on errors.
+Agents need to collaborate dynamically rather than hand off work sequentially.
+The workflow requires iteration, backtracking, or dynamic routing based on intermediate results.
+
+IMPLEMENTATION Flow: 
+-------------------
+🪂🚀Define your agents: Create agent instances (for example, ChatCompletionAgent) with specific instructions and AI services. Each agent should have a clear
+responsibility.
+
+🪂🚀Set up the sequential orchestration: Use the SequentialOrchestration class to create an orchestration pipeline that executes agents one after another,
+and pass your agent instances to the object. Optionally, add callbacks to observe agent outputs during the sequence.
+
+🪂🚀Start the runtime: Initialize and start an InProcessRuntime object to manage agent execution.
+
+🪂🚀Invoke the orchestration: Call the orchestration's invoke method with the task or input you want the agents to work on. The orchestration processes the task
+through all agents sequentially.
+
+🪂🚀Collect the final result: Await and retrieve the final output after all agents have completed their steps.
+
+🪂🚀Stop the runtime (optional): After processing, cleanly shut down the runtime to free resources.
 
 
 🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼🪼
