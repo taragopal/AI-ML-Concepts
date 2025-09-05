@@ -212,9 +212,9 @@ print(result)
 Using Function Choice Behaviors
 The Semantic Kernel SDK provides several ways to configure how functions are advertised and selected for invocation by the AI model:
 
-Auto: The model can choose from zero or more functions.
-Required: The model is encouraged or required to choose at least one function.
-None: The model can't choose any functions.
+☘️ Auto: The model can choose from zero or more functions.
+☘️ Required: The model is encouraged or required to choose at least one function.
+☘️ None: The model can't choose any functions.
 
 
 
