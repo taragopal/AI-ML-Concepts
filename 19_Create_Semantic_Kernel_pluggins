@@ -89,10 +89,132 @@ prompt.
 When you register plugin classes with the kernel, all of their functions become available to the AI model. The model can then automatically choose from any of these functions based on the prompt. In Python,
 use add_plugin to register your plugin classes and their functions.
 
+---------------------------------------------------------------------------------------------------------------------
+Function Advertising
+Function advertising means providing specific functions to the AI model so it can invoke them. By default, all of the functions from registered plugins are available unless a list of functions is explicitly
+provided. You can advertise all registered functions, limit availability to specific ones, or disable function calling entirely to rely solely on the language model's reasoning.
+
+Advertising All Functions
+By using AddFromType, all of the functions from the specified classes are registered to the kernel. The AI model can then automatically choose from any of these functions based on the prompt.
+
+When you register plugin classes with the kernel, all of their functions become available to the AI model. The model can then automatically choose from any of these functions based on the prompt. In Python,
+use add_plugin to register your plugin classes and their functions.
+🐍🐍PYTHON🐍🐍
+-------------------------
+import os
+from semantic_kernel import Kernel
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIPromptExecutionSettings
+from semantic_kernel.functions.kernel_function_decorator import kernel_function
+from semantic_kernel.contents.chat_history import ChatHistory
+
+class WeatherForecastUtils:
+    @kernel_function(name="GetWeatherForCity", description="Gets the weather for a given city.")
+    def get_weather_for_city(self, city: str) -> str:
+        return "Sunny"  # Stub for demo
+
+class DateTimeUtils:
+    @kernel_function(name="GetCurrentUtcDateTime", description="Gets the current UTC date and time.")
+    def get_current_utc_date_time(self) -> str:
+        import datetime
+        return datetime.datetime.utcnow().isoformat()
+
+deployment_name = os.getenv("DEPLOYMENT_NAME")
+endpoint = os.getenv("PROJECT_ENDPOINT")
+api_key = os.getenv("PROJECT_KEY")
+
+kernel = Kernel()
+chat_service = AzureChatCompletion(
+    deployment_name=deployment_name,
+    endpoint=endpoint,
+    api_key=api_key
+)
+kernel.add_service(chat_service, "chat_completion")
+kernel.add_plugin(WeatherForecastUtils(), "WeatherForecastUtils")
+kernel.add_plugin(DateTimeUtils(), "DateTimeUtils")
+
+settings = OpenAIPromptExecutionSettings()
+chat_history = ChatHistory()
+chat_history.add_user_message("What is the likely color of the sky in Boston?")
+
+result = chat_service.get_chat_message_content(
+    chat_history=chat_history,
+    kernel=kernel,
+    settings=settings
+)
+print(result)
 
 
+Advertising Selected Functions
+---------------------------------
+Instead of making all functions available, you can explicitly select and advertise just the required ones. This approach offers more control and limits the functions the model can use.
+You control which functions are available by only registering the plugins you want the model to access. The SDK doesn't currently support restricting advertised functions directly in settings.
+
+🐍🐍PYTHON🐍🐍
+-----------------
+# As of SK 1.31, Python SDK doe    s not support restricting advertised functions directly in settings.
+# The closest approach is to only register the plugins you want available.
+
+kernel = Kernel()
+chat_service = AzureChatCompletion(
+    deployment_name=deployment_name,
+    endpoint=endpoint,
+    api_key=api_key
+)
+kernel.add_service(chat_service, "chat_completion")
+kernel.add_plugin(WeatherForecastUtils(), "WeatherForecastUtils")
+# Only add DateTimeUtils if you want it available:
+# kernel.add_plugin(DateTimeUtils(), "DateTimeUtils")
+
+settings = OpenAIPromptExecutionSettings()
+chat_history = ChatHistory()
+chat_history.add_user_message("What is the likely color of the sky in Boston?")
+
+result = chat_service.get_chat_message_content(
+    chat_history=chat_history,
+    kernel=kernel,
+    settings=settings
+)
+print(result)
 
 
+Disabling Function Calling
+--------------------------------
+You can prevent the AI model from invoking any functions, forcing it to rely solely on its language model capabilities to process the prompt.
+In Python, don't register any plugins with the kernel to disable function calling.
+
+🐍🐍PYTHON🐍🐍
+-----------------
+# In Python, you can disable function calling by not registering any plugins,
+# or by using settings that prevent tool/function use if supported in your SDK version.
+# As of SK 1.31, you can use the following pattern:
+
+settings = OpenAIPromptExecutionSettings()  # No plugins registered, so no functions available
+
+kernel = Kernel()
+chat_service = AzureChatCompletion(
+    deployment_name=deployment_name,
+    endpoint=endpoint,
+    api_key=api_key
+)
+kernel.add_service(chat_service, "chat_completion")
+# Do NOT add any plugins
+
+chat_history = ChatHistory()
+chat_history.add_user_message("What is the likely color of the sky in Boston?")
+
+result = chat_service.get_chat_message_content(
+    chat_history=chat_history,
+    kernel=kernel,
+    settings=settings
+)
+print(result)
+
+Using Function Choice Behaviors
+The Semantic Kernel SDK provides several ways to configure how functions are advertised and selected for invocation by the AI model:
+
+Auto: The model can choose from zero or more functions.
+Required: The model is encouraged or required to choose at least one function.
+None: The model can't choose any functions.
 
 
 
