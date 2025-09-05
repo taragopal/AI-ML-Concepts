@@ -35,7 +35,9 @@ updated_task = await kernel.invoke("TaskManagement.complete_task", arguments)
 Invoke functions automatically
 🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
 
-Semantic Kernel SDK enables the LLM to automatically invoke your plugin functions. Automatically invoking functions allows your application to respond more intelligently to user input. Instead of requiring explicit commands to trigger specific actions, the AI can determine the appropriate function to call based on the user's request. This enhances the user experience by making interactions more natural and reducing the need for precise instructions.
+Semantic Kernel SDK enables the LLM to automatically invoke your plugin functions. Automatically invoking functions allows your application to respond more intelligently to user input. Instead of requiring
+explicit commands to trigger specific actions, the AI can determine the appropriate function to call based on the user's request. This enhances the user experience by making interactions more natural and 
+reducing the need for precise instructions.
 
 To enable functions to be invoked automatically:
 
@@ -71,15 +73,21 @@ Make plugins AI-friendly
 🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
 To enhance the LLM's ability to understand and utilize your plugin functions, consider the following guidelines:
 
-Use descriptive and concise function names
-Names that clearly convey the function's purpose will help the model understand when to call the function. Avoid abbreviations or acronyms. Use the description parameter in the @kernel_function decorator to provide context and instructions when necessary.
+Use descriptive and concise function names: Names that clearly convey the function's purpose will help the model understand when to call the function. Avoid abbreviations or acronyms. Use the description 
+parameter in the @kernel_function decorator to provide context and instructions when necessary.
 
-Minimize function parameters
-Limit the number of function parameters and use primitive types whenever possible. This reduces token consumption and simplifies the function signature.
+Minimize function parameters: Limit the number of function parameters and use primitive types whenever possible. This reduces token consumption and simplifies the function signature.
 
-Name function parameters clearly
-Use descriptive parameter names that clarify their purpose. Avoid abbreviations or acronyms.
+Name function parameters clearly: Use descriptive parameter names that clarify their purpose. Avoid abbreviations or acronyms.
 
+Function Advertising: Function advertising means providing specific functions to the AI model so it can invoke them. By default, all of the functions from registered plugins are available unless a list of 
+functions is explicitly provided. You can advertise all registered functions, limit availability to specific ones, or disable function calling entirely to rely solely on the language model's reasoning.
+
+Advertising All Functions: By using AddFromType, all of the functions from the specified classes are registered to the kernel. The AI model can then automatically choose from any of these functions based on the
+prompt.
+
+When you register plugin classes with the kernel, all of their functions become available to the AI model. The model can then automatically choose from any of these functions based on the prompt. In Python,
+use add_plugin to register your plugin classes and their functions.
 
 
 
