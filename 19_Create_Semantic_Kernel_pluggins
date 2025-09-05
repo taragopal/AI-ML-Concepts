@@ -1,3 +1,64 @@
-One of the core features of the Semantic Kernel SDK is that it allows developers to combine native code with the power of large language models (LLMs). Plugins encapsulate your functions and allow them to be used by the AI. This enables your AI the ability to perform actions that it wouldn't otherwise be able to do.
+One of the core features of the Semantic Kernel SDK is that it allows developers to combine native code with the power of large language models (LLMs). Plugins encapsulate your functions and allow them to be used
+by the AI. This enables your AI the ability to perform actions that it wouldn't otherwise be able to do.
 
-Suppose you want to create a smart traffic routing system in a city. You can add plugin functions to your kernel that can interact with a daily passengers, number of fleets to a source and destination, and modes of transportation, weather disruptions, local law and order information from police, possible events and large gathering and aggregate all these to deploy a traffic routing system.
+An example: 
+Suppose you want to create a smart traffic routing system in a city. You can add plugin functions to your kernel that can interact with a daily passengers, number of fleets to a source and destination, and modes
+of transportation, weather disruptions, local law and order information from police, possible events and large gathering and aggregate all these to deploy a traffic routing system.
+
+Creating a plugin
+©️©️©️🚀🚀🚀©️©️©️
+For the Semantic Kernel to correctly route requests to your functions, the plugins you create must include details that describe the function's behavior. The details need to be written in a way that can be understood
+by the AI. The function's input, output and side effects should be described so that the AI can use the function.
+
+To create a plugin function in Python, you use the @kernel_function decorator with a description parameter. The return type is specified in the function signature (for example, -> dict | None). Here’s a minimal 
+example:
+
+from semantic_kernel import kernel_function, KernelPlugin
+
+class TaskManagementPlugin(KernelPlugin):
+    @kernel_function(name="complete_task", description="Marks a task as completed by its ID.")
+    def complete_task(self, id: int) -> dict | None:
+        # ...complete the task logic...
+        pass
+# In Python, plugin functions use decorators such as @kernel_function to provide metadata for the Semantic Kernel. Chat history is typically represented as a list of dictionaries, each with a role and content key.
+
+#below call the function to register the plugin 
+from semantic_kernel import Kernel
+
+kernel = Kernel()
+kernel.add_plugin(TaskManagementPlugin(), "TaskManagement")
+
+arguments = {"id": 1}
+updated_task = await kernel.invoke("TaskManagement.complete_task", arguments)
+
+Invoke functions automatically
+---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
