@@ -1,10 +1,8 @@
 lab1: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/01-build-your-kernel.html
 
-/* API key: 3CsBjTzEAZ5ASNoy2wn7YVvnVts7Vad2nvwyTzPdPE7jRHLsEiQuJQQJ99BIACfhMk5XJ3w3AAAAACOGvDXM
-Azure OpenAPI endpoint: https://tarastarit6-2788-resource.openai.azure.com/
-
 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
-In the cloud shell pane, enter the following commands to clone the GitHub repo containing the code files for this exercise (type the command, or copy it to the clipboard and then right-click in the command line and paste as plain text):
+In the cloud shell pane, enter the following commands to clone the GitHub repo containing the code files for this exercise (type the command, or copy it to the clipboard and then right-click in the command line
+and paste as plain text):
 
  🌏rm -r mslearn-ai-semantic-kernel -f
  🌏git clone https://github.com/MicrosoftLearning/mslearn-ai-semantic-kernel mslearn-ai-semantic-kernel
@@ -14,6 +12,98 @@ In the cloud shell command-line pane, enter the following command to install the
 🌏 python -m venv labenv
 🌏./labenv/bin/Activate.ps1
 🌏 pip install python-dotenv semantic-kernel[azure] 
+
+Enter the following command to edit the configuration file that has been provided: 🌏 code .env
+
+STEP>> In the code file, replace the your_project_endpoint and your_project_api_key placeholders with the Azure OpenAI endpoint and API key for your project (copied from the project Overview page in the Azure AI
+Foundry portal), and replace the your_deployment_name placeholder with the name you assigned to your gpt-4o model.
+/* API key: 3CsBjTzEAZ5ASNoy2wn7YVvnVts7Vad2nvwyTzPdPE7jRHLsEiQuJQQJ99BIACfhMk5XJ3w3AAAAACOGvDXM
+Azure OpenAPI endpoint: https://tarastarit6-2788-resource.openai.azure.com/
+
+Run a prompt with Semantic Kernel
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Edit the code file: code kernel.py
+Under the comment Import namespaces, add the following language-specific code to import the namespaces you’ll need to use the Semantic Kernel SDK.
+
+ # 🛠️🧰🛡️🏹🏮✏️📁 Import namespaces
+ from semantic_kernel import Kernel
+ from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+ from semantic_kernel.functions.kernel_arguments import KernelArguments
+
+
+ #🛠️🧰🛡️🏹🏮✏️📁Create a kernel with Azure OpenAI chat completion
+ kernel = Kernel()
+ chat_completion = AzureChatCompletion(
+     api_key=api_key,
+     endpoint=endpoint,
+     deployment_name=deployment_name
+ )
+ kernel.add_service(chat_completion)
+
+
+#🛠️🧰🛡️🏹🏮✏️📁 Test the chat completion service
+ response = await kernel.invoke_prompt(             // ERROR -   File "/home/tara/mslearn-ai-semantic-kernel/Labfiles/01-build-your-kernel/Python/kernel.py", line 33
+                                                                 response = await kernel.invoke_prompt(
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                                 SyntaxError: 'await' outside function
+     "Give me a list of 10 breakfast foods with eggs and cheese", 
+     KernelArguments())
+ print("Assistant > " + str(response))
+
+ #🛠️🧰🛡️🏹🏮✏️📁   ACTUAL -- to be edited later--------------
+
+import os
+import asyncio
+from dotenv import load_dotenv
+
+# Import namespaces
+from semantic_kernel import Kernel
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+from semantic_kernel.functions.kernel_arguments import KernelArguments
+
+
+
+
+async def main():
+
+    load_dotenv()
+    # Set your values in the .env file
+    api_key = os.getenv("PROJECT_KEY")
+    endpoint = os.getenv("PROJECT_ENDPOINT")
+    deployment_name = os.getenv("DEPLOYMENT_NAME")
+
+
+# Create a kernel with Azure OpenAI chat completion
+
+kernel = Kernel()
+chat_completion = AzureChatCompletion(
+     api_key=api_key,
+     endpoint=endpoint,
+     deployment_name=deployment_name
+ )
+kernel.add_service(chat_completion)
+
+# Test the chat completion service
+response = await kernel.invoke_prompt(
+     "Give me a list of 10 breakfast foods with eggs and cheese", 
+     KernelArguments())
+print("Assistant > " + str(response))
+
+if __name__ == "__main__":
+        asyncio.run(main())
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
