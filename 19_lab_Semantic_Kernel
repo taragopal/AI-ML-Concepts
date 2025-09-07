@@ -1,0 +1,109 @@
+lab1: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/01-build-your-kernel.html
+
+/* API key: 3CsBjTzEAZ5ASNoy2wn7YVvnVts7Vad2nvwyTzPdPE7jRHLsEiQuJQQJ99BIACfhMk5XJ3w3AAAAACOGvDXM
+Azure OpenAPI endpoint: https://tarastarit6-2788-resource.openai.azure.com/
+
+🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
+In the cloud shell pane, enter the following commands to clone the GitHub repo containing the code files for this exercise (type the command, or copy it to the clipboard and then right-click in the command line and paste as plain text):
+
+ 🌏rm -r mslearn-ai-semantic-kernel -f
+ 🌏git clone https://github.com/MicrosoftLearning/mslearn-ai-semantic-kernel mslearn-ai-semantic-kernel
+
+ Go to the folder:🌏 cd mslearn-ai-semantic-kernel/Labfiles/01-build-your-kernel/Python
+In the cloud shell command-line pane, enter the following command to install the libraries you’ll use:
+🌏 python -m venv labenv
+🌏./labenv/bin/Activate.ps1
+🌏 pip install python-dotenv semantic-kernel[azure] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
+lab2: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/02-run-prompts.html
+🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
+lab3: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/03-create-plugins.html
+🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
+
+lab4: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/04-apply-function-filters.html
+🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
+
+lab5: https://microsoftlearning.github.io/mslearn-ai-semantic-kernel/Instructions/Labs/05-create-semantic-kernel-ai-assistant.html
+🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩
