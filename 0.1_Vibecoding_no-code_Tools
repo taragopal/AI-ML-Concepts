@@ -10,6 +10,7 @@ Windsurf : Using the coding assistant with continious iteration to build and deb
   
 
 Tips: copied From ClaudeAI github 
+============≈=======================
 
 1. Define Your Vision Clearly
 Start with a strong, detailed vision of what you want to build and how it should work. If your input is vague or messy, the output will be too. Remember: garbage in, garbage out. Take time to think through your idea from both a product and user perspective. Use tools like Gemini 2.5 Pro in Google AI Studio to help structure your thoughts, outline the product goals, and map out how to bring your vision to life. The clearer your plan, the smoother the execution.
