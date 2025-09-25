@@ -10,6 +10,7 @@ To follow along with the lessons, here's how you can install Claude Code.
 
 Install Node.js, then run:
 
+
 npm install -g @anthropic-ai/claude-code
 
 For more installation guides, you can find them here. If you're using Windows, make sure to check the Windows Setup here.
