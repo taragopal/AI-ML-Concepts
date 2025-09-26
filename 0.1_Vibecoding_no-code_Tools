@@ -32,31 +32,48 @@ Next.js (for frontend and APIs) + Supabase (for database and authentication) + T
 This combo is beginner-friendly, fast to develop with, and removes a lot of boilerplate and manual setup.
 
 5. Utilize Cursor Rules
-Cursor Rules is your friend. I am still using it and I think it is still the best solution to start solid. You must have very good Cursor Rules with all the tech stack you are using, instructions to the AI model, best practices, patterns, and some things to avoid. You can find a lot of templates here: **https://cursor.directory/**!!
+Cursor Rules is your friend. I am still using it and I think it is still the best solution to start solid. You must have very good Cursor Rules with all the tech
+stack you are using, instructions to the AI model, best practices, patterns, and some things to avoid. You can find a lot of templates 
+here: **https://cursor.directory/**!!
 
 6. Maintain an Instructions Folder
-Always have an instructions folder. It should have markdown files. It should be full of docs-example components to provide to the Ai to guide it better or use (or context7 mcp, it has a tons of documentation).
+Always have an instructions folder. It should have markdown files. It should be full of docs-example components to provide to the Ai to guide it better or use
+(or context7 mcp, it has a tons of documentation).
 
 7. Craft Detailed Prompts
-Now the building phase starts. You open Cursor and start giving it your prompts. Again, garbage in, garbage out. You must give very good prompts. If you cannot, just go plan with Gemini 2.5 Pro on Google AI Studio; make it make a very good intricate version of your prompt. It should be as detailed as possible; do not leave any room for the AI to guess, you must tell it everything.
+Now the building phase starts. You open Cursor and start giving it your prompts. Again, garbage in, garbage out. You must give very good prompts. If you cannot,
+just go plan with Gemini 2.5 Pro on Google AI Studio; make it make a very good intricate version of your prompt. It should be as detailed as possible; do not
+leave any room for the AI to guess, you must tell it everything.
 
 8. Break Down Complex Features
-Do not give huge prompts like "build me this whole feature." The AI will start to hallucinate and produce shit. You must break down any feature you want to add into phases, especially when you are building a complex feature. Instead of one huge prompt, it should be broken down into 3-5 requests or even more based on your use case.
+Do not give huge prompts like "build me this whole feature." The AI will start to hallucinate and produce shit. You must break down any feature you want to add 
+into phases, especially when you are building a complex feature. Instead of one huge prompt, it should be broken down into 3-5 requests or even more based on your
+use case.
 
 9. Manage Chat Context Wisely
-When the chat gets very big, just open a new one. Trust me, this is the best. The AI context window is limited; if the chat is very big, it will forget everything earlier, it will forget any patterns, design and will start to produce bad outputs. Just start a new chat window then. When you open the new window, just give the AI a brief description about the feature you were working on and mention the files you were working on. Context is very important (more on that is coming..)!
+When the chat gets very big, just open a new one. Trust me, this is the best. The AI context window is limited; if the chat is very big, it will forget everything
+earlier, it will forget any patterns, design and will start to produce bad outputs. Just start a new chat window then. When you open the new window, just give the
+AI a brief description about the feature you were working on and mention the files you were working on. Context is very important (more on that is coming..)!
 
 10. Don't Hesitate to Restart/Refine Prompts
-When the AI gets it wrong and goes in the wrong way or adding things that you do not want, returning back, changing the prompt, and sending the AI again would be just much better than completing on this shit code because AI will try to save its mistakes and will probably introduce new ones. So just return, refine the prompt, and send it again!
+When the AI gets it wrong and goes in the wrong way or adding things that you do not want, returning back, changing the prompt, and sending the AI again would be
+just much better than completing on this shit code because AI will try to save its mistakes and will probably introduce new ones. So just return, refine the
+prompt, and send it again!
 
 11. Provide Precise Context
-Providing the right context is the most important thing, especially when your codebase gets bigger. Mentioning the right files that you know the changes will be made to will save a lot of requests and too much time for you and the AI. But you must make sure these files are relevant because too much context can overwhelm the AI too. You must always make sure to mention the right components that will provide the AI with the context it needs.
+Providing the right context is the most important thing, especially when your codebase gets bigger. Mentioning the right files that you know the changes will
+be made to will save a lot of requests and too much time for you and the AI. But you must make sure these files are relevant because too much context can
+overwhelm the AI too. You must always make sure to mention the right components that will provide the AI with the context it needs.
 
 12. Leverage Existing Components for Consistency
-A good trick is that you can mention previously made components to the AI when building new ones. The AI will pick up your patterns fast and will use the same in the new component without so much effort!
+A good trick is that you can mention previously made components to the AI when building new ones. The AI will pick up your patterns fast and will use the same in
+the new component without so much effort!
 
 13. Iteratively Review Code with AI
-After building each feature, you can take the code of the whole feature, copy-paste it to Gemini 2.5 Pro (in Google AI Studio) to check for any security vulnerabilities or bad coding patterns; it has a huge context window. Hence, it actually gives very good insights where you can then input into to Claude in Cursor and tell it to fix these flaws. (Tell Gemini to act as a security expert and spot any flaws. In another chat, tell it so you are an expert (in the tech stack at your tech stack), ask it for any performance issues or bad coding patterns). Yeah, it is very good at spotting them! After getting the insights from Gemini, just copy-paste it into Claude to fix any of them, then send it Gemini again until it tells you everything is 100% ok.
+After building each feature, you can take the code of the whole feature, copy-paste it to Gemini 2.5 Pro (in Google AI Studio) to check for any security 
+vulnerabilities or bad coding patterns; it has a huge context window. Hence, it actually gives very good insights where you can then input into to Claude in
+Cursor and tell it to fix these flaws. (Tell Gemini to act as a security expert and spot any flaws. In another chat, tell it so you are an expert (in the tech
+stack at your tech stack), ask it for any performance issues or bad coding patterns). Yeah, it is very good at spotting them! After getting the insights from Gemini, just copy-paste it into Claude to fix any of them, then send it Gemini again until it tells you everything is 100% ok.
 
 14. Prioritize Security Best Practices
 Regarding security, because it causes a lot of backlash, here are security patterns that you must follow to ensure your website is good and has no very bad security flaws (though it won't be 100% because there will be always flaws in any website by anyone!):
