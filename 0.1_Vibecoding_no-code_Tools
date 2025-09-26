@@ -13,20 +13,28 @@ Tips: copied From ClaudeAI github
 ============≈=======================
 
 1. Define Your Vision Clearly
-Start with a strong, detailed vision of what you want to build and how it should work. If your input is vague or messy, the output will be too. Remember: garbage in, garbage out. Take time to think through your idea from both a product and user perspective. Use tools like Gemini 2.5 Pro in Google AI Studio to help structure your thoughts, outline the product goals, and map out how to bring your vision to life. The clearer your plan, the smoother the execution.
+Start with a strong, detailed vision of what you want to build and how it should work. If your input is vague or messy, the output will be too. Remember: garbage
+in, garbage out. Take time to think through your idea from both a product and user perspective. Use tools like Gemini 2.5 Pro in Google AI Studio to help 
+structure your thoughts, outline the product goals, and map out how to bring your vision to life. The clearer your plan, the smoother the execution.
 
 2. Plan Your UI/UX First
 
-Before you start building, take time to carefully plan your UI. Use tools like v0 to help you visualize and experiment with layouts early. Consistency is key. Decide on your design system upfront and stick with it. Create reusable components such as buttons, loading indicators, and other common UI elements right from the start. This will save you tons of time and effort later on You can also use **https://21st.dev/**; it has a ton of components with their AI prompts, you just copy-paste the prompt, it is great!
+Before you start building, take time to carefully plan your UI. Use tools like v0 to help you visualize and experiment with layouts early. Consistency is key.
+Decide on your design system upfront and stick with it. Create reusable components such as buttons, loading indicators, and other common UI elements right from 
+the start. This will save you tons of time and effort later on You can also use **https://21st.dev/**; it has a ton of components with their AI prompts, you just
+copy-paste the prompt, it is great!
 
 3. Master Git & GitHub
-Git is your best friend. You must know GitHub and Git; it will save you a lot if AI messed things up, you could easily return to an older version. If you did not use Git, your codebase could be destroyed with some wrong changes. You must use it; it makes everything much easier and organized. After finishing a big feature, you must make sure to commit your code. Trust me, this will save you from a lot of disasters in the future!
+Git is your best friend. You must know GitHub and Git; it will save you a lot if AI messed things up, you could easily return to an older version. If you did not
+use Git, your codebase could be destroyed with some wrong changes. You must use it; it makes everything much easier and organized. After finishing a big feature,
+you must make sure to commit your code. Trust me, this will save you from a lot of disasters in the future!
 
 4. Choose a Popular Tech Stack
-Stick to widely-used, well-documented technologies. AI models are trained on public data. The more common the stack, the better the AI can help you write high-quality code.
+Stick to widely-used, well-documented technologies. AI models are trained on public data. The more common the stack, the better the AI can help you write
+high-quality code.
 
 I personally recommend:
-
+➡️↘️↗️
 Next.js (for frontend and APIs) + Supabase (for database and authentication) + Tailwind CSS (for styling) + Vercel (for hosting).
 
 This combo is beginner-friendly, fast to develop with, and removes a lot of boilerplate and manual setup.
@@ -35,6 +43,7 @@ This combo is beginner-friendly, fast to develop with, and removes a lot of boil
 Cursor Rules is your friend. I am still using it and I think it is still the best solution to start solid. You must have very good Cursor Rules with all the tech
 stack you are using, instructions to the AI model, best practices, patterns, and some things to avoid. You can find a lot of templates 
 here: **https://cursor.directory/**!!
+example: https://cursor.directory/deep-learning-developer-python-cursor-rules
 
 6. Maintain an Instructions Folder
 Always have an instructions folder. It should have markdown files. It should be full of docs-example components to provide to the Ai to guide it better or use
