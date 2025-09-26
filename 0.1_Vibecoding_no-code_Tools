@@ -1,4 +1,5 @@
 IDE extentions: Github Copilot
+==================================
 
 AI powered code interpreter: CURSOR ( vs-code based) 
   -- free plan 
@@ -79,13 +80,16 @@ A good trick is that you can mention previously made components to the AI when b
 the new component without so much effort!
 
 13. Iteratively Review Code with AI
-After building each feature, you can take the code of the whole feature, copy-paste it to Gemini 2.5 Pro (in Google AI Studio) to check for any security 
+After building each feature, you can take the code of the whole feature, copy-paste it to Gemini 2.5 Pro (in Google AI Studio) to 🐦🐦🐦 check for any security 
 vulnerabilities or bad coding patterns; it has a huge context window. Hence, it actually gives very good insights where you can then input into to Claude in
 Cursor and tell it to fix these flaws. (Tell Gemini to act as a security expert and spot any flaws. In another chat, tell it so you are an expert (in the tech
-stack at your tech stack), ask it for any performance issues or bad coding patterns). Yeah, it is very good at spotting them! After getting the insights from Gemini, just copy-paste it into Claude to fix any of them, then send it Gemini again until it tells you everything is 100% ok.
+stack at your tech stack), ask it for any performance issues or bad coding patterns). Yeah, it is very good at spotting them! After getting the insights from
+Gemini, just copy-paste it into Claude to fix any of them, then send it Gemini again until it tells you everything is 100% ok.
 
-14. Prioritize Security Best Practices
-Regarding security, because it causes a lot of backlash, here are security patterns that you must follow to ensure your website is good and has no very bad security flaws (though it won't be 100% because there will be always flaws in any website by anyone!):
+14. Prioritize Security Best Practices 🔜
+☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️☘️
+Regarding security, because it causes a lot of backlash, here are security patterns that you must follow to ensure your website is good and has no very bad 
+security flaws (though it won't be 100% because there will be always flaws in any website by anyone!):
 
 Trusting Client Data: Using form/URL input directly.
 
@@ -120,14 +124,20 @@ When you face an error, you have two options:
 
 Either return back and make the AI do what you asked for again, and yeah this actually works sometimes.
 
-If you want to continue, just copy-paste the error from the console and tell the AI to solve it. But if it took more than three requests without solving it, the best thing to do is returning back again, tweaking your prompt, and providing the correct context as I said before. Correct prompt and right context can save sooo much effort and requests.
+If you want to continue, just copy-paste the error from the console and tell the AI to solve it. But if it took more than three requests without solving it, the
+best thing to do is returning back again, tweaking your prompt, and providing the correct context as I said before. Correct prompt and right context can save
+sooo much effort and requests.
 
 16. Debug Stubborn Errors Systematically
-If there is an error that the AI took so much on and seems never to get it or solve it and started to go on rabbit holes (usually after 3 requests and still did not get it right), just tell Claude to take an overview of the components the error is coming from and list top suspects it thinks are causing the error. And also tell it to add logs and then provide the output of them to it again. This will significantly help it find the problem and it works correctly most of the times!
+If there is an error that the AI took so much on and seems never to get it or solve it and started to go on rabbit holes (usually after 3 requests and still did
+not get it right), just tell Claude to take an overview of the components the error is coming from and list top suspects it thinks are causing the error. And also
+tell it to add logs and then provide the output of them to it again. This will significantly help it find the problem and it works correctly most of the times!
 
 17. Be Explicit: Prevent Unwanted AI Changes
-Claude has this trait of adding, removing, or modifying things you did not ask for. We all hate it and it sucks. Just a simple sentence under every prompt like (Do not fuckin change anything I did not ask for Just do only what I fuckin told you) works very well and it is really effective!
+Claude has this trait of adding, removing, or modifying things you did not ask for. We all hate it and it sucks. Just a simple sentence under every prompt like
+(Do not fuckin change anything I did not ask for Just do only what I fuckin told you) works very well and it is really effective!
 
 18. Keep a "Common AI Mistakes" File
-Always have a file of mistakes that you find Claude doing a lot. Add them all to that file and when adding any new feature, just mention that file. This will prevent it from doing any frustrating repeated mistakes and you from repeating yourself!
+Always have a file of mistakes that you find Claude doing a lot. Add them all to that file and when adding any new feature, just mention that file. This will
+prevent it from doing any frustrating repeated mistakes and you from repeating yourself!
 
