@@ -1,0 +1,92 @@
+Deploy an AI model on Azure Kubernetes Service (AKS) with the AI toolchain operator add-on
+
+Why there is a need? 
+
+Self-hosting LLMs on Kubernetes is gaining momentum among organizations with inference workloads at scale, such as batch processing, chatbots, agents, and AI-driven applications. These organizations often have
+access to commercial-grade GPUs and are seeking alternatives to costly per-token API pricing models, which can quickly scale out of control. Many also require the ability to fine-tune or customize their models,
+a capability typically restricted by closed-source API providers. Additionally, companies handling sensitive or proprietary data - especially in regulated sectors such as finance, healthcare, or defense - 
+prioritize self-hosting to maintain strict control over data and prevent exposure through third-party systems.
+
+To address these needs: 
+Use the AI toolchain operator add-on to efficiently self-host large language models on Kubernetes, reducing costs and resource complexity, enhancing customization, and maintaining full control over your data.
+
+Kubernetes AI Toolchain Operator (KAITO), a Cloud Native Computing Foundation (CNCF) Sandbox project, simplifies the process of deploying and managing open-source LLM workloads on Kubernetes. KAITO integrates
+with vLLM, a high-throughput inference engine designed to serve large language models efficiently. vLLM as an inference engine helps reduce memory and GPU requirements without significantly compromising accuracy.
+
+
+
+
+
+
+
+Enable the AI toolchain operator add-on on an AKS cluster
+==========================================================
+
+Create an AKS cluster with the AI toolchain operator add-on enabled
+--------------------------------------------------------------------
+Create a new Azure RG: 
+az group create --name $AZURE_RESOURCE_GROUP --location $AZURE_LOCATION
+
+Create an AKS cluster with the AI toolchain operator add-on enabled: 
+az aks create --location $AZURE_LOCATION --resource-group $AZURE_RESOURCE_GROUP --name $CLUSTER_NAME --enable-ai-toolchain-operator --enable-oidc-issuer --generate-ssh-keys
+
+On an existing AKS cluster, you can enable the AI toolchain operator add-on: 
+az aks update --name $CLUSTER_NAME --resource-group $AZURE_RESOURCE_GROUP --enable-ai-toolchain-operator --enable-oidc-issuer
+
+CONNECT to the CLUSTER
+----------------------
+Configure kubectl to connect to your cluster using the az aks get-credentials command: 
+az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $CLUSTER_NAME
+
+
+Verify the connection to your cluster using the kubectl get command: kubectl get nodes
+
+Deploy a default hosted AI model
+---------------------------------
+
+Deploy the Phi-4-mini instruct model preset for inference from the KAITO model repository using the kubectl apply command:
+kubectl apply -f https://raw.githubusercontent.com/kaito-project/kaito/refs/heads/main/examples/inference/kaito_workspace_phi_4_mini.yaml
+
+Track the live resource changes in your workspace: kubectl get workspace workspace-phi-4-mini -w
+
+Check your inference service and get the service IP address: export SERVICE_IP=$(kubectl get svc workspace-phi-4-mini -o jsonpath='{.spec.clusterIP}')
+
+Test the Phi-4-mini instruct inference service with a sample input of your choice using the OpenAI chat completions API format: (https://platform.openai.com/docs/api-reference/chat)
+kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/v1/completions -H "Content-Type: application/json" -d '{
+        "model": "phi-4-mini-instruct",
+        "prompt": "How should I dress for the weather today?",
+        "max_tokens": 10
+       }'
+
+
+Deploy a custom or domain-specific LLM
+-------------------------------------------
+Open-source LLMs are often trained in different contexts and domains, and the hosted model presets may not always fit the requirements of your application or data. In this case, KAITO also supports inference
+deployment of newer or domain-specific language models from HuggingFace. Try out a custom model inference deployment with KAITO by following this https://learn.microsoft.com/en-us/azure/aks/kaito-custom-inference-model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
