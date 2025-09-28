@@ -74,16 +74,108 @@ Install the AI toolchain operator add-on on your AKS cluster.
 If you already have the AI toolchain operator add-on installed, update your AKS cluster to the latest version to run KAITO v0.3.1+ and ensure that the AI toolchain operator add-on feature flag is enabled.
 
 
+Export Environment Variables: 
+----------------------------
+ACR_NAME="myACRname"
+ACR_USERNAME="myACRusername"
+REPOSITORY="myRepository"
+VERSION="repositoryVersion'
+ACR_PASSWORD=$(az acr token create --name $ACR_USERNAME --registry $ACR_NAME --expiration-in-days 10 --repository $REPOSITORY content/write content/read --query "credentials.passwords[0].value" --output tsv)
 
+Create a new secret for your private registry
+---------------------------------------------
+kubectl create secret docker-registry myregistrysecret --docker-server=$ACR_NAME.azurecr.io --docker-username=$ACR_USERNAME --docker-password=$ACR_PASSWORD
 
+Fine-tune an AI model
+------------------------
+Here we will fine-tune the Phi-3-mini small language model using the qLoRA tuning method by applying the following Phi-3-mini KAITO fine-tuning workspace CRD:
 
+YAML 🍠 
+apiVersion: kaito.sh/v1alpha1
+kind: Workspace
+metadata:
+     name: workspace-tuning-phi-3-mini
+resource:
+     instanceType: "Standard_NC24ads_A100_v4"
+     labelSelector:
+          matchLabels:
+                apps: tuning-phi-3-mini-pycoder
+tuning:
+     preset:
+         name: phi3mini128kinst
+  method: qlora
+  input:
+      urls: 
+          - “myDatasetURL”
+  output:
+      image: “$ACR_NAME.azurecr.io/$REPOSITORY:$VERSION”
+      imagePushSecret: myregistrysecret
 
+Reference:   https://github.com/kaito-project/kaito/tree/main
 
+1. Apply the KAITO fine-tuning workspace CRD using the kubectl apply command: kubectl apply workspace-tuning-phi-3-mini.yaml
 
+2. Track the readiness of your GPU resources, fine-tuning job, and workspace using the kubectl get workspace command: kubectl get workspace -w
 
+Output:
+NAME                         INSTANCE                  RESOURCE READY  INFERENCE READY  JOB STARTED  WORKSPACE SUCCEEDED  AGE
+workspace-tuning-phi-3-mini  Standard_NC24ads_A100_v4  True                             True                              3m 45s
 
+3. Check the status of your fine-tuning job pods using the kubectl get pods command: kubectl get pods
 
+Deploy the fine-tuned model for inferencing
+---------------------------------------------
+Now, you use the Phi-3-mini adapter image created in the previous section for a new inferencing deployment with this model. 
+The KAITO inference workspace CRD below consists of the following resources and adapter(s) to deploy on your AKS cluster:
 
+apiVersion: kaito.sh/v1alpha1
+kind: Workspace
+metadata:
+  name: workspace-phi-3-mini-adapter
+resource:
+  instanceType: "Standard_NC6s_v3"
+  labelSelector:
+    matchLabels:
+      apps: phi-3-adapter
+inference:
+  preset:
+    name: “phi-3-mini-128k-instruct“
+  adapters:
+    -source:
+       name: kubernetes-adapter
+       image: $ACR_NAME.azurecr.io/$REPOSITORY:$VERSION
+       imagePullSecrets:
+             - myregistrysecret
+     strength: “1.0”
+
+1. Apply the KAITO inference workspace CRD using the kubectl apply command: kubectl apply -f workspace-phi-3-mini-adapter.yaml
+
+2. Track the readiness of your GPU resources, inference server, and workspace using the kubectl get workspace command: kubectl get workspace -w
+
+Output:
+NAME                          INSTANCE          RESOURCE READY  INFERENCE READY  JOB STARTED  WORKSPACE SUCCEEDED  AGE
+workspace-phi-3-mini-adapter  Standard_NC6s_v3  True            True                          True                 5m 47s
+
+3. Check the status of your inferencing workload pods using the kubectl get pods command: kubectl get pods
+** It might take several minutes for your pods to show the Running status.
+
+Test the model inference service endpoint
+------------------------------------------
+
+1. Check your model inferencing service and retrieve the service IP address using the kubectl get svc command.
+export SERVICE_IP=$(kubectl get svc workspace-phi-3-mini-adapter -o jsonpath=’{.spec.clusterIP}’)
+
+2. Run your fine-tuned Phi-3-mini model with a sample input of your choice using the kubectl run command. The following example asks the generative AI model, "What is AKS?":
+kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/chat -H "accept: application/json" -H "Content-Type: application/json" -d "{\"prompt\":\"What is AKS?\"}"
+
+3. Output :
+"Kubernetes on Azure" is the official name.
+https://learn.microsoft.com/en-us/azure/aks/ ...
+
+Cleanup Resources
+------------------
+kubectl delete workspace workspace-tuning-phi-3-mini
+kubectl delete workspace workspace-phi-3-mini-adapter
 
 
 
