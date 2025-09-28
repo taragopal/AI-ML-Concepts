@@ -185,15 +185,181 @@ As an AI engineer or developer, you might have to prototype and deploy AI worklo
 inferencing workloads using open-source presets supported out-of-box and managed in KAITO model registry (https://github.com/kaito-project/kaito/tree/main/presets)
 or to dynamically download from the HuggingFace (https://huggingface.co/models) registry at runtime onto your AKS cluster.
 
+Choose an open-source language model from HuggingFace
+----------------------------------------------------
+In this example, we use the BigScience Bloom-1B7 small language model. Alternatively, you can choose from thousands of text-generation models supported on 
+HuggingFace.
+
+1. Connect to your AKS cluster using the az aks get-credentials command: 
+Open Cloud Shell > az aks get-credentials --resource-group <resource-group-name> --name <aks-cluster-name>
+
+2. Clone the KAITO project GitHub repository using the git clone command: git clone https://github.com/kaito-project/kaito.git
+
+3. Confirm that your kaito-gpu-provisioner pod is running successfully using the kubectl get deployment command: kubectl get deployment -n kube-system | grep kaito
+
+Deploy your model inferencing workload using the KAITO workspace template
+---------------------------------------------------------------------------
+1. Navigate to the kaito directory and open the docs/custom-model-integration/reference_image_deployment.yaml KAITO template. Replace the default values in the
+following fields with your model's requirements:
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+instanceType: The minimum VM size for this inference service deployment is Standard_NC24ads_A100_v4. For larger model sizes you can choose a VM in the 
+Standard_NCads_A100_v4 family with higher memory capacity.
+MODEL_ID: Replace with your model's specific HuggingFace identifier, which can be found after https://huggingface.co/ in the model card URL.
+"--torch_dtype": Set to "float16" for compatibility with V100 GPUs. For A100, H100 or newer GPUs, use "bfloat16".
+
+apiVersion: kaito.sh/v1alpha1
+kind: Workspace
+metadata:
+  name: workspace-custom-llm
+resource:
+  instanceType: "Standard_NC24ads_A100_v4"
+  labelSelector:
+    matchLabels:
+      apps: custom-llm
+inference:
+  template: 
+    spec:
+      containers:
+      - name: custom-llm-container
+        image: ghcr.io/kaito-project/kaito/llm-reference-preset:latest
+        command: ["accelerate"]
+        args:
+          - "launch"
+          - "--num_processes"
+          - "1"
+          - "--num_machines"
+          - "1"
+          - "--gpu_ids"
+          - "all"
+          - "tfs/inference_api.py"
+          - "--pipeline"
+          - "text-generation"
+          - "--trust_remote_code"
+          - "--allow_remote_files"
+          - "--pretrained_model_name_or_path"
+          - "bigscience/bloom-1b7"
+          - "--torch_dtype"
+          - "bfloat16"
+        volumeMounts:
+        - name: dshm
+          mountPath: /dev/shm
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
 
 
+2. Save these changes to your docs/custom-model-integration/reference_image_deployment.yaml file.
+
+3. Run the deployment in your AKS cluster using the kubectl apply command.
+kubectl apply -f docs/custom-model-integration/reference_image_deployment.yaml
+
+Test your custom model inferencing service
+---------------------------------------------
+1. Track the live resource changes in your KAITO workspace using the kubectl get workspace command: kubectl get workspace workspace-custom-llm -w
+
+** Note that machine readiness can take up to 10 minutes, and workspace readiness up to 20 minutes.
+
+2. Check your language model inference service and get the service IP address using the kubectl get svc command.
+export SERVICE_IP=$(kubectl get svc workspace-custom-llm -o jsonpath='{.spec.clusterIP}')
+
+3. Test your custom model inference service with a sample input of your choice using the OpenAI API format:
+
+kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/v1/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "bloom-1b7",
+    "prompt": "What sport should I play in rainy weather?",
+    "max_tokens": 20
+  }'
+
+Clean up resources
+------------------
+Delete the KAITO inference workspace using the kubectl delete workspace command: kubectl delete workspace workspace-custom-llm
 
 
+Monitor and visualize AI inference metrics on Azure Kubernetes Service (AKS) with the AI toolchain operator add-on
+==================================================================================================================
+
+Monitoring and observability play a key role in maintaining high performance and low cost of your AI workload deployments in Azure Kubernetes Service (AKS).
+Visibility into system and performance metrics can indicate the limits of your underlying infrastructure and motivate real-time adjustments and optimizations
+to reduce workload interruptions. Monitoring also provides valuable insights into resource utilization for cost-effective management of computational resources
+and accurate provisioning.
+The Kubernetes AI Toolchain Operator (KAITO) is a managed add-on for AKS.. 
+
+Deploy a KAITO inference service
+---------------------------------
+Collect metrics for the Qwen-2.5-coder-7B-instruct language model.
+
+1. Start by applying the following KAITO workspace custom resource to your cluster:
+kubectl apply -f https://raw.githubusercontent.com/Azure/kaito/main/examples/inference/kaito_workspace_qwen_2.5_coder_7b-instruct.yaml
+
+2. Track the live resource changes in your KAITO workspace: kubectl get workspace workspace-qwen-2-5-coder-7b-instruct -w
+
+Machine readiness can take up to 10 minutes, and workspace readiness can take up to 20 minutes depending on the size of your language model.
+
+3. Confirm that your inference service is running and get the service IP address:
+export SERVICE_IP=$(kubectl get svc workspace-qwen-2-5-coder-7b-instruct -o jsonpath='{.spec.clusterIP}')
+
+echo $SERVICE_IP
 
 
+Surface KAITO inference metrics to the managed service for Prometheus
+----------------------------------------------------------------------
+Prometheus metrics are collected by default at the KAITO /metrics endpoint.
 
+1. Add the following label to your KAITO inference service so that a Kubernetes ServiceMonitor deployment can detect it:
+kubectl label svc workspace-qwen-2-5-coder-7b-instruct App=qwen-2-5-coder 
 
+2. Create a ServiceMonitor resource to define the inference service endpoints and the required configurations to scrape the vLLM Prometheus metrics. 
+Export these metrics to the managed service for Prometheus by deploying the following ServiceMonitor YAML manifest in the kube-system namespace:
 
+cat <<EOF | kubectl apply -n kube-system -f -
+apiVersion: azmonitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-kaito-monitor
+spec:
+  selector:
+    matchLabels:
+      App: qwen-2-5-coder
+  endpoints:
+  - port: http
+    interval: 30s
+    path: /metrics
+    scheme: http
+EOF
+
+Check for the following output to verify that ServiceMonitor is created:Output
+
+servicemonitor.azmonitoring.coreos.com/prometheus-kaito-monitor created
+
+3. Verify that your ServiceMonitor deployment is running successfully: kubectl get servicemonitor prometheus-kaito-monitor -n kube-system
+
+4. In the Azure portal, verify that vLLM metrics are successfully collected in the managed service for Prometheus.
+
+4a. In your Azure Monitor workspace, go to Managed Prometheus > Prometheus explorer.
+
+4b. Select the Grid tab and confirm that a metrics item is associated with the job named workspace-qwen-2-5-coder-7b-instruct.
+
+Visualize KAITO inference metrics in Azure Managed Grafana
+----------------------------------------------------------
+1. The vLLM project provides a Grafana dashboard configuration named grafana.json for inference workload monitoring. Navigate to the bottom of this page and copy
+the entire contents of the grafana.json file.
+
+2. Go to the bottom of the examples page and copy the entire contents of the grafana.json file:
+
+3. Complete the steps to import the Grafana configurations into a new dashboard in Azure Managed Grafana.
+
+4. Go to your Managed Grafana endpoint, view the available dashboards, and select the vLLM dashboard.
+
+5. To begin collecting data for your selected model deployment, confirm that the datasource value shown at the top left of the Grafana dashboard is your instance
+of the managed service for Prometheus you created for this example.
+
+6. Copy the inference preset name defined in your KAITO workspace to the model_name field in the Grafana dashboard. In this example, the model name is 
+qwen2.5-coder-7b-instruct.
+
+7. In a few moments, verify that the metrics for your KAITO inference service appear in the vLLM Grafana dashboard.
 
 
 
