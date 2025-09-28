@@ -13,10 +13,8 @@ Use the AI toolchain operator add-on to efficiently self-host large language mod
 Kubernetes AI Toolchain Operator (KAITO), a Cloud Native Computing Foundation (CNCF) Sandbox project, simplifies the process of deploying and managing open-source LLM workloads on Kubernetes. KAITO integrates
 with vLLM, a high-throughput inference engine designed to serve large language models efficiently. vLLM as an inference engine helps reduce memory and GPU requirements without significantly compromising accuracy.
 
-
-
-
-
+These AI toolchain operator managed add-on offers a modular, plug-and-play setup that allows teams to quickly deploy models and expose them via production-ready APIs. It includes built-in features like 
+OpenAI-compatible APIs, prompt formatting, and streaming response support.
 
 
 Enable the AI toolchain operator add-on on an AKS cluster
@@ -65,6 +63,15 @@ Open-source LLMs are often trained in different contexts and domains, and the ho
 deployment of newer or domain-specific language models from HuggingFace. Try out a custom model inference deployment with KAITO by following this https://learn.microsoft.com/en-us/azure/aks/kaito-custom-inference-model.
 
 
+Fine-tune and deploy an AI model for inferencing on Azure Kubernetes Service (AKS) with the AI toolchain operator add-on
+=========================================================================================================================
+
+Prerequisites
+--------------
+The Kubernetes command-line client, kubectl, installed and configured. For more information, see Install kubectl.
+Configure Azure Container Registry (ACR) integration of a new or existing ACR with your AKS cluster.
+Install the AI toolchain operator add-on on your AKS cluster.
+If you already have the AI toolchain operator add-on installed, update your AKS cluster to the latest version to run KAITO v0.3.1+ and ensure that the AI toolchain operator add-on feature flag is enabled.
 
 
 
