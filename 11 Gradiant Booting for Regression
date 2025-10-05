@@ -28,7 +28,6 @@ When the relationships in the data are complex: The sequential learning allows t
 missed by a single-shot approach like Random Forest.
 
 Cost:
-
 Computational Cost (Training): Training can be slower than Random Forest, as the sequential nature of the algorithm prevents parallelization.
 
 Memory Cost (Model Size): The model size is often smaller than a Random Forest, as the trees are typically smaller and simpler.
