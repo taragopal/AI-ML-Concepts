@@ -50,7 +50,8 @@ min
 ​
  
 
-Standardization (Z-score normalization): Transforms data to have a mean of 0 and a standard deviation of 1. Useful when the algorithm assumes a normal distribution or when comparing features with different units.
+Standardization (Z-score normalization): Transforms data to have a mean of 0 and a standard deviation of 1. Useful when the algorithm assumes a normal distribution
+or when comparing features with different units.
 X 
 std
 ​
@@ -154,7 +155,8 @@ Rolling Statistics: Calculating moving averages, moving standard deviations over
 E. Handling Missing Values (Imputation)
 Not strictly feature creation, but a crucial part of preparing features.
 
-Mean/Median/Mode Imputation: Replacing missing values with the mean (for numerical), median (for skewed numerical), or mode (for categorical) of the respective column.
+Mean/Median/Mode Imputation: Replacing missing values with the mean (for numerical), median (for skewed numerical), or mode (for categorical) of the respective
+column.
 
 Forward/Backward Fill: For time-series data, filling missing values with the last observed value (forward fill) or the next observed value (backward fill).
 
@@ -165,7 +167,8 @@ Missing Value Indicator: Creating a new binary feature (0 or 1) to indicate whet
 The Iterative Process and Best Practices:
 Feature engineering is rarely a one-shot process. It's highly iterative:
 
-Understand Your Data and Domain: Spend time exploring your raw data, visualize distributions, and talk to domain experts. This is crucial for identifying potentially useful features.
+Understand Your Data and Domain: Spend time exploring your raw data, visualize distributions, and talk to domain experts. This is crucial for identifying
+potentially useful features.
 
 Hypothesize Features: Based on your understanding, brainstorm new features that might be predictive.
 
