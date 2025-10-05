@@ -5,6 +5,7 @@ AI powered code interpreter: CURSOR ( vs-code based)
   -- free plan 
   -- Pro plan $20 per month 
 
+
 Browser based: Replit, Firebase, Lovable 
 
 Windsurf : Using the coding assistant with continious iteration to build and debug and add additional features to the code. 
@@ -33,6 +34,7 @@ you must make sure to commit your code. Trust me, this will save you from a lot 
 4. Choose a Popular Tech Stack
 Stick to widely-used, well-documented technologies. AI models are trained on public data. The more common the stack, the better the AI can help you write
 high-quality code.
+
 
 I personally recommend:
 ➡️↘️↗️
