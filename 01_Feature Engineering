@@ -1,17 +1,23 @@
 Feature engineering is one of the most critical and often underestimated steps in the machine learning workflow. It's the art and science of transforming raw 
 data into features that better represent the underlying problem to the predictive models, thereby improving model performance and sometimes even simplifying the
 model itself.
-Think of it this way: Machine learning algorithms are great at finding patterns in numbers. Your raw data, however, might be messy, in the wrong format, or contain hidden information that the algorithm can't directly "see." Feature engineering is about making that raw data speak the language of your model more effectively.
+Think of it this way: Machine learning algorithms are great at finding patterns in numbers. Your raw data, however, might be messy, in the wrong format, or 
+contain hidden information that the algorithm can't directly "see." Feature engineering is about making that raw data speak the language of your model more
+effectively.
 
 Why is Feature Engineering Important? 
-Improves Model Performance: This is the primary goal. Well-engineered features can significantly boost accuracy, precision, recall, F1-score, RMSE, etc., often more than tweaking the model's hyperparameters.
+Improves Model Performance: This is the primary goal. Well-engineered features can significantly boost accuracy, precision, recall, F1-score, RMSE, etc.,
+often more than tweaking the model's hyperparameters.
 
-Enables Algorithms to Work: Many ML algorithms cannot directly process raw data (e.g., text, dates, categorical strings). Feature engineering converts these into a numerical format they can understand.
+Enables Algorithms to Work: Many ML algorithms cannot directly process raw data (e.g., text, dates, categorical strings). Feature engineering converts these
+into a numerical format they can understand.
 
-Reduces Overfitting/Underfitting: By creating more informative features, you provide the model with a clearer signal, reducing noise and helping it generalize better to unseen data. It can also help simplify the model by capturing complex relationships in simpler features.
+Reduces Overfitting/Underfitting: By creating more informative features, you provide the model with a clearer signal, reducing noise and helping it generalize
+better to unseen data. It can also help simplify the model by capturing complex relationships in simpler features.
 
 
-Enhances Interpretability: Sometimes, engineered features make more intuitive sense than raw features, which can help in understanding why a model makes certain predictions.
+Enhances Interpretability: Sometimes, engineered features make more intuitive sense than raw features, which can help in understanding why a model makes certain
+predictions.
 
 Faster Training: A smaller, more focused set of high-quality features can lead to faster model training times.
 
@@ -31,7 +37,8 @@ Numerical data is usually straightforward, but transformations can reveal hidden
 
 Scaling/Normalization:
 
-Min-Max Scaling: Rescales numerical features to a fixed range, usually 0 to 1. Useful for algorithms sensitive to the scale of features (e.g., neural networks, SVMs, k-Nearest Neighbors).
+Min-Max Scaling: Rescales numerical features to a fixed range, usually 0 to 1. Useful for algorithms sensitive to the scale of features (e.g., neural networks,
+SVMs, k-Nearest Neighbors).
 X 
 norm
 ​
@@ -50,7 +57,8 @@ min
 ​
  
 
-Standardization (Z-score normalization): Transforms data to have a mean of 0 and a standard deviation of 1. Useful when the algorithm assumes a normal distribution
+Standardization (Z-score normalization): Transforms data to have a mean of 0 and a standard deviation of 1. Useful when the algorithm assumes a normal
+distribution
 or when comparing features with different units.
 X 
 std
