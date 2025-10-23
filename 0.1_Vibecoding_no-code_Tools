@@ -72,10 +72,12 @@ When the AI gets it wrong and goes in the wrong way or adding things that you do
 just much better than completing on this shit code because AI will try to save its mistakes and will probably introduce new ones. So just return, refine the
 prompt, and send it again!
 
+
 11. Provide Precise Context
 Providing the right context is the most important thing, especially when your codebase gets bigger. Mentioning the right files that you know the changes will
 be made to will save a lot of requests and too much time for you and the AI. But you must make sure these files are relevant because too much context can
 overwhelm the AI too. You must always make sure to mention the right components that will provide the AI with the context it needs.
+
 
 12. Leverage Existing Components for Consistency
 A good trick is that you can mention previously made components to the AI when building new ones. The AI will pick up your patterns fast and will use the same in
@@ -94,31 +96,24 @@ Regarding security, because it causes a lot of backlash, here are security patte
 security flaws (though it won't be 100% because there will be always flaws in any website by anyone!):
 
 Trusting Client Data: Using form/URL input directly.
-
 Fix: Always validate & sanitize on server; escape output.
 
 Secrets in Frontend: API keys/creds in React/Next.js client code.
-
 Fix: Keep secrets server-side only (env vars, ensure .env is in .gitignore).
 
 Weak Authorization: Only checking if logged in, not if allowed to do/see something.
-
 Fix: Server must verify permissions for every action & resource.
 
 Leaky Errors: Showing detailed stack traces/DB errors to users.
-
 Fix: Generic error messages for users; detailed logs for devs.
 
 No Ownership Checks (IDOR): Letting user X access/edit user Y's data via predictable IDs.
-
 Fix: Server must confirm current user owns/can access the specific resource ID.
 
 Ignoring DB-Level Security: Bypassing database features like RLS for fine-grained access.
-
 Fix: Define data access rules directly in your database (e.g., RLS).
 
 Unprotected APIs & Sensitive Data: Missing rate limits; sensitive data unencrypted.
-
 Fix: Rate limit APIs (middleware); encrypt sensitive data at rest; always use HTTPS.
 
 15. Handle Errors Effectively
