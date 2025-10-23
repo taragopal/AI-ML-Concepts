@@ -21,7 +21,7 @@ Foundry portal), and replace the your_deployment_name placeholder with the name 
 Azure OpenAPI endpoint: https://tarastarit6-2788-resource.openai.azure.com/
 
 Run a prompt with Semantic Kernel
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Edit the code file: code kernel.py
 Under the comment Import namespaces, add the following language-specific code to import the namespaces you’ll need to use the Semantic Kernel SDK.
 
@@ -29,7 +29,6 @@ Under the comment Import namespaces, add the following language-specific code to
  from semantic_kernel import Kernel
  from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
  from semantic_kernel.functions.kernel_arguments import KernelArguments
-
 
  #🛠️🧰🛡️🏹🏮✏️📁Create a kernel with Azure OpenAI chat completion
  kernel = Kernel()
