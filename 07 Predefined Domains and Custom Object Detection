@@ -1,5 +1,6 @@
 Object detection models, especially modern deep learning ones (like YOLO, SSD, Faster R-CNN), are trained on massive datasets of images where objects have been manually annotated with bounding boxes and class labels. During training, the model learns to identify visual patterns associated with specific objects and predict their locations. When presented with a new image, it outputs a list of detected objects, their predicted class, a bounding box, and a confidence score.
 
+
 Importance of Predefined Domains in Object Detection
 In the context of services like Azure AI Vision's Custom Vision, "predefined domains" (often referred to as "domain-specific models" or "pre-trained domains") are essentially base models that have already been trained on large datasets relevant to a specific industry or use case.
 
