@@ -113,6 +113,7 @@ Example: "Small": 0, "Medium": 1, "Large": 2.
 
 Caution: Implies an arbitrary order that may not exist in reality, which can mislead models that interpret numerical relationships (e.g., Linear Regression, k-NN). Best for ordinal categorical data where an order genuinely exists (e.g., "low," "medium," "high").
 
+
 Target Encoding (Mean Encoding): Replaces a categorical value with the mean of the target variable for that category.
 
 Purpose: Captures the relationship between the category and the target directly.
