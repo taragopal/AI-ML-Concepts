@@ -126,6 +126,7 @@ Example: For a "City" feature, replace "New York" with the average house price i
 Caution: Can lead to data leakage if not done carefully (e.g., calculating the mean on the entire dataset before splitting train/test). Requires proper cross-validation or specific techniques to avoid this.
 
 C. Text Data
+××××××××××××××××
 Raw text is highly unstructured and needs significant transformation.
 
 Tokenization: Breaking down text into smaller units (words, sub-words, sentences).
@@ -143,6 +144,7 @@ Word Embeddings (Word2Vec, GloVe, FastText): Represents words as dense numerical
 Sentence/Document Embeddings (BERT, GPT embeddings): Extend word embeddings to entire sentences or documents, capturing more complex contextual meaning.
 
 D. Date and Time Data
+××××××××××××××××××××××××
 Timestamps are rich sources of information if properly extracted.
 
 Extracting Components:
@@ -164,6 +166,7 @@ Lag Features: For time-series data, creating features based on past values (e.g.
 Rolling Statistics: Calculating moving averages, moving standard deviations over a window of time.
 
 E. Handling Missing Values (Imputation)
+××××××××××××××××××××××××××××××××××××××××
 Not strictly feature creation, but a crucial part of preparing features.
 
 Mean/Median/Mode Imputation: Replacing missing values with the mean (for numerical), median (for skewed numerical), or mode (for categorical) of the respective
