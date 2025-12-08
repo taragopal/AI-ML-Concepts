@@ -30,7 +30,9 @@ Raw Data: The data in its original, unprocessed form (e.g., a timestamp, a block
 Engineered Feature: A new feature created from raw data through transformation, combination, or extraction, designed to be more useful for the model.
 
 Common Feature Engineering Techniques (by Data Type):
+
 A. Numerical Data
+×××××××××××××××××××
 Numerical data is usually straightforward, but transformations can reveal hidden patterns:
 
 
@@ -95,6 +97,7 @@ Purpose: When the effect of one feature on the target depends on the value of an
 Example: Age * Income (if the impact of age on a prediction changes based on income level).
 
 B. Categorical Data
+×××××××××××××××××××××
 Most ML models cannot directly process string categories, so they need to be converted to numerical representations.
 
 One-Hot Encoding (OHE): Creates new binary (0 or 1) columns for each unique category in a feature.
