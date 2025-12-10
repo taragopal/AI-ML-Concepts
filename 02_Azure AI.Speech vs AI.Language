@@ -14,7 +14,7 @@ You need to interact with users through voice.
 Use Cases:
 
 Speech-to-Text (Transcription):
-
+-----------------------------------
 Real-time Captioning/Subtitling: For live meetings, online events, or video calls (e.g., Microsoft Teams, broadcasting).
 
 Voice Assistants/Bots: Enabling users to speak commands or queries to an application or device (e.g., "Hey, turn on the lights," "What's the weather like?").
@@ -42,7 +42,7 @@ Interactive Voice Response (IVR) Systems: Automating customer service responses 
 Voice Announcements: Generating announcements for public transport, retail, etc.
 
 Speech Translation:
-
+---------------------
 Real-time Multilingual Communication: Translating live spoken conversations between people speaking different languages (speech-to-speech translation).
 
 Global Meeting Transcription: Transcribing and translating spoken content from multi-language meetings into text.
@@ -61,7 +61,7 @@ Azure AI Language
 Focus: Understanding, analyzing, and generating insights from written text. It's about extracting meaning and structure from raw text.
 
 When to choose it:
-
+-----------------------
 You have unstructured text data as input.
 
 You need to analyze, categorize, summarize, or extract specific information from written content.
