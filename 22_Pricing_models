@@ -13,4 +13,5 @@ It has been recently highlighted by Kevin Murphy ahead of NeurIPS: https://x.com
 Featue Engineering is very important for TIme series forsecasting, i have used XGBoost, LAG-LLAMA
 
 
+Usually data in real world is filled with duplication. And missing gaps. 
  
