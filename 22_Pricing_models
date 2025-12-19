@@ -1,0 +1,13 @@
+Liner Regression models:  
+prophet can be used parallel to xg boost
+xgboost
+
+
+
+ou should check out our Bayesian Structured Time Series demo: https://examples.rxinfer.com/categories/advanced_examples/bayesian_structured_time_series/
+It has been recently highlighted by Kevin Murphy ahead of NeurIPS: https://x.com/sirbayes/status/1995643243481248216?s=20
+
+Featue Engineering is very important for TIme series forsecasting, i have used XGBoost, LAG-LLAMA
+
+
+ 
