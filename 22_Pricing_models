@@ -17,4 +17,8 @@ Usually data in real world is filled with duplication. And missing gaps.
 
 
 SHAP - Impact on Predicted Sales
+
+HGBoots 
+Big cost is on storing, and compute using GCP, like Big Query etc. 
+Can also work on streaming and live data. 
  
