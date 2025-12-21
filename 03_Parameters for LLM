@@ -28,12 +28,9 @@ Positive values (e.g., 0.5 to 2.0): Reduce the likelihood of repetition. Higher 
 
 Negative values (e.g., -0.5 to -2.0): Increase the likelihood of repetition (can make the output more repetitive, usually not desired).
 
-Why it's important:
-
+Why it's important: 
 Preventing Repetitive Phrases: Helps avoid the model getting stuck in loops or repeating the same ideas or words over and over.
-
 Encouraging Diversity: Promotes the generation of more varied and original responses by pushing the model to explore different vocabulary.
-
 Relationship with Presence Penalty: Often used in conjunction with presence_penalty.
 
 3. Presence Penalty
@@ -47,10 +44,8 @@ Positive values (e.g., 0.5 to 2.0): Reduce the likelihood of new tokens being ge
 
 Negative values (e.g., -0.5 to -2.0): Increase the likelihood of new tokens being generated if they are already present (can encourage exploring new topics).
 
-Why it's important:
-
+Why it's important: 
 Promoting New Topics/Ideas: Helps the model move on from already discussed concepts and introduce new ones.
-
 Complementary to Frequency Penalty: While frequency penalty handles literal repetition, presence penalty helps avoid re-hashing the same themes or concepts.
 
 Example: If your prompt mentions "apples," a high presence_penalty might make the model less likely to discuss "apples" further in its response.
@@ -61,15 +56,10 @@ Parameter Name: max_tokens (or max_response_tokens in some contexts, but max_tok
 What it does: This parameter sets the maximum number of tokens (words, sub-words, or punctuation marks) that the model will generate in its response. This count includes the tokens in the prompt when calculating the total token limit for the request, but max_tokens specifically refers to the generated output length.
 
 Why it's important:
-
 Cost Control: Token usage directly correlates with API costs. Setting a reasonable max_tokens prevents unnecessarily long and expensive responses.
-
 Resource Management: Limits the computational resources and time required to generate a response.
-
 User Experience: Prevents overwhelming users with overly long answers and ensures responses fit within UI constraints.
-
 Preventing Infinite Loops: Acts as a hard stop if the model gets into a repetitive loop or fails to hit a stop_sequence.
-
 Note: The total number of tokens (prompt + max_tokens) must not exceed the model's maximum context window size (e.g., 4096 tokens for gpt-35-turbo).
 
 Other Important Parameters:
