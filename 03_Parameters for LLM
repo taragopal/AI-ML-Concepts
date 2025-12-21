@@ -63,62 +63,40 @@ Preventing Infinite Loops: Acts as a hard stop if the model gets into a repetiti
 Note: The total number of tokens (prompt + max_tokens) must not exceed the model's maximum context window size (e.g., 4096 tokens for gpt-35-turbo).
 
 Other Important Parameters:
+------------------------------------------------------------------------------------------------------------------------------------
 Temperature: (As discussed in the previous answer)
-
 What it does: Controls the randomness/creativity of the output.
-
 Range: 0.0 to 2.0 (or similar).
-
 Low values (e.g., 0.0-0.5): More deterministic, focused, factual.
-
 High values (e.g., 0.7-1.0+): More diverse, creative, exploratory.
-
 Crucial for determinism.
 
 Top P (Nucleus Sampling):
-
 Parameter Name: top_p
-
 What it does: An alternative to temperature for controlling randomness. Instead of sampling from a fixed distribution (temperature), top_p samples from the smallest set of tokens whose cumulative probability exceeds the value of top_p.
-
 Range: 0.0 to 1.0.
-
 Low values (e.g., 0.1-0.5): Model considers fewer high-probability tokens, leading to more focused and less diverse output.
-
 High values (e.g., 0.9-1.0): Model considers a wider range of tokens, leading to more diverse output.
-
 Often used as an alternative to temperature; generally, choose one or the other.
 
 Presence Penalty: (Already discussed above, but reinforcing its importance)
 
 Logit Bias:
-
 Parameter Name: logit_bias
-
 What it does: Allows you to explicitly increase or decrease the likelihood of specific tokens appearing in the generated output. You provide a map of token IDs to bias values.
-
 Why it's important: Fine-grained control for very specific use cases:
-
 Forcing certain words: Make the model always use a specific keyword.
-
 Preventing unwanted words: Block the model from generating profanity or irrelevant terms.
-
 Guiding specific formatting: Encourage specific punctuation or characters.
 
 Note: Requires knowledge of token IDs.
 
 N (Number of Completions):
-
 Parameter Name: n
-
 What it does: Specifies how many different response completions to generate for a single prompt.
-
 Why it's important:
-
 Exploring options: Get multiple variations of a response to choose the best one.
-
 Testing robustness: See how varied the model's output can be.
-
 Note: Generates n independent responses, which increases token usage and cost.
 
 Understanding and experimenting with these parameters is key to effectively leveraging the power of large language models for various applications.
