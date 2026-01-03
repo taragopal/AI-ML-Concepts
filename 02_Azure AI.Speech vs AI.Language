@@ -5,8 +5,7 @@ Here's a breakdown of when to choose which service for what use cases:
 Azure AI Speech 
 Focus: Converting spoken language to text, text to spoken language, and processing speech for various insights.
 
-When to choose it:
-
+When to choose it: 
 You have audio data as input or need audio as output.
 
 You need to interact with users through voice.
