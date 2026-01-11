@@ -4,6 +4,8 @@ Think of it this way: Machine learning algorithms are great at finding patterns 
 contain hidden information that the algorithm can't directly "see." Feature engineering is about making that raw data speak the language of your model more
 effectively.
 
+
+
 Why is Feature Engineering Important? 
 Improves Model Performance: This is the primary goal. Well-engineered features can significantly boost accuracy, precision, recall, F1-score, RMSE, etc.,
 often more than tweaking the model's hyperparameters.
